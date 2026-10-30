@@ -5,4 +5,5 @@ export const DEFAULT_SETTINGS = {
   logoDestination: "homepage", // a key of LOGO_DESTINATIONS in logo-link.js
   logoCustomPath: "", // normalized path, used when logoDestination is "custom"
   hideAskButton: true, // hide YouTube's AI "Ask" button on the watch page
+  hideShortsInSubscriptions: false, // hide Shorts on the Subscriptions page
 };

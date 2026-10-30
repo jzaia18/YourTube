@@ -1,0 +1,12 @@
+/* Hide Shorts in Subscriptions. Shorts come as shelves (full-width sections of the feed, so
+   hiding one leaves no gap) and, rarely, as single items among regular videos, recognised by
+   their link into the Shorts player. Hiding a single item could leave a hole in a grid row. */
+
+/* www.youtube.com: YouTube keeps earlier pages alive but hidden, each ytd-browse naming its page. */
+html[data-ourtube-hide-shorts-in-subscriptions] ytd-browse[page-subtype="subscriptions"] ytd-rich-section-renderer:has(> #content > ytd-rich-shelf-renderer[is-shorts]),
+html[data-ourtube-hide-shorts-in-subscriptions] ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(a[href^="/shorts/"]),
+/* m.youtube.com: its page has no name in the markup, so use the path content.js marks on <html>. */
+html[data-ourtube-hide-shorts-in-subscriptions][data-ourtube-path="/feed/subscriptions"] ytm-rich-section-renderer:has(> .rich-section-content > ytm-reel-shelf-renderer),
+html[data-ourtube-hide-shorts-in-subscriptions][data-ourtube-path="/feed/subscriptions"] ytm-rich-item-renderer:has(a[href^="/shorts/"]) {
+  display: none !important;
+}

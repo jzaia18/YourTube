@@ -18,10 +18,11 @@ Configure everything from the OurTube button in the browser toolbar.
 
 - **Logo link:** choose where the YouTube logo takes you: the homepage (YouTube's default), Subscriptions, Watch later, or any YouTube page you like.
 - **Hide the Ask button:** remove YouTube's AI "Ask" button from videos.
+- **Hide Shorts in Subscriptions:** see only regular videos from the channels you subscribe to.
 
 ## Install (development)
 
-Requires Chrome 152+ or Firefox 128+.
+Requires Chrome 152+ or Firefox 147+.
 
 ### Chrome
 

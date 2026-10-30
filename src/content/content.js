@@ -3,8 +3,8 @@
 // in manifest.json each define a top-level object with apply(settings); this script loads the
 // settings and hands them to every feature, now and whenever they change.
 (() => {
-  const DEFAULT_SETTINGS = { enabled: true, logoDestination: "homepage", logoCustomPath: "", hideAskButton: true }; // keep in sync with src/shared/settings.js (checked by tests/content-copies.test.js)
-  const FEATURES = [logoLink, hideAskButton];
+  const DEFAULT_SETTINGS = { enabled: true, logoDestination: "homepage", logoCustomPath: "", hideAskButton: true, hideShortsInSubscriptions: false }; // keep in sync with src/shared/settings.js (checked by tests/content-copies.test.js)
+  const FEATURES = [logoLink, hideAskButton, hideShortsInSubscriptions];
 
   let settings = { ...DEFAULT_SETTINGS };
   const applyAll = () => FEATURES.forEach((feature) => feature.apply(settings));
@@ -22,4 +22,11 @@
     }
     applyAll();
   });
+
+  // Mark the current page's path on <html> (data-ourtube-path), so feature CSS can target one
+  // page. currententrychange fires on every in-app navigation, back/forward included. Set up
+  // last and guarded, so a missing Navigation API only loses the marker, not every feature.
+  const markPath = () => (document.documentElement.dataset.ourtubePath = location.pathname);
+  markPath();
+  window.navigation?.addEventListener("currententrychange", markPath);
 })();
