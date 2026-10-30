@@ -22,13 +22,13 @@
 
   let enabled = DEFAULT_SETTINGS.enabled;
 
-  chrome.storage.sync.get(DEFAULT_SETTINGS).then((settings) => {
+  browser.storage.sync.get(DEFAULT_SETTINGS).then((settings) => {
     enabled = settings.enabled;
     render(enabled);
   });
 
   // React to the popup toggling the setting, live, in every open tab.
-  chrome.storage.onChanged.addListener((changes, area) => {
+  browser.storage.onChanged.addListener((changes, area) => {
     if (area === "sync" && "enabled" in changes) {
       enabled = changes.enabled.newValue;
       render(enabled);

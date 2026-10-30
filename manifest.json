@@ -11,7 +11,8 @@
   },
   "permissions": ["storage"],
   "background": {
-    "service_worker": "src/background/service-worker.js",
+    "service_worker": "src/background/background.js",
+    "scripts": ["src/background/background.js"],
     "type": "module"
   },
   "action": {
@@ -29,5 +30,15 @@
       "css": ["src/content/content.css"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "minimum_chrome_version": "152",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@ourtube",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  }
 }
