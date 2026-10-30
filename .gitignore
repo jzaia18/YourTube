@@ -1,0 +1,21 @@
+# Packaged builds (zip for the Chrome Web Store, .crx from "Pack extension")
+*.zip
+*.crx
+# Private signing key produced by "Pack extension" — never commit
+*.pem
+dist/
+
+# Node tooling, if added later
+node_modules/
+npm-debug.log*
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local env
+.env
+.env.*
