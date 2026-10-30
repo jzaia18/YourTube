@@ -24,6 +24,20 @@ _Avoid_: Logo redirect, home button reroute
 The page the YouTube logo leads to: Homepage, Subscriptions, Watch later, or Custom (a user-entered path on youtube.com). Homepage is YouTube's own behaviour.
 _Avoid_: Logo target, home page setting
 
+### Guide
+
+**Guide**:
+YouTube's full navigation menu, opened with the ☰ button beside the logo: Home, Subscriptions, You, Explore, More from YouTube, Settings, and more. Docked on the left on most desktop pages, it slides out as a drawer on the watch page. The narrow rail of icons shown when the Guide is collapsed is not the Guide, nor is the column of recommended videos beside the player. YouTube's mobile site has no Guide. Say "Guide" internally; where users read it, say "Sidebar (Guide)", since most people call it the sidebar.
+_Avoid_: Sidebar (on its own), menu, left nav
+
+**Explore section**:
+The section of the Guide headed "Explore", linking to YouTube's topic pages such as Music, Gaming, News, and Sports.
+_Avoid_: Explore menu, Explore tab
+
+**More from YouTube section**:
+The section of the Guide headed "More from YouTube", linking to YouTube's other products such as YouTube Premium, YouTube TV, YouTube Music, and YouTube Kids.
+_Avoid_: Other products, YouTube apps
+
 ### Watch page
 
 **Watch page**:

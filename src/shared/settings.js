@@ -6,4 +6,6 @@ export const DEFAULT_SETTINGS = {
   logoCustomPath: "", // normalized path, used when logoDestination is "custom"
   hideAskButton: true, // hide YouTube's AI "Ask" button on the watch page
   hideShortsInSubscriptions: false, // hide Shorts on the Subscriptions page
+  hideGuideExplore: false, // hide the Guide's Explore section
+  hideGuideMoreFromYouTube: false, // hide the Guide's More from YouTube section
 };

@@ -1,0 +1,13 @@
+/* Hide Explore in the Guide (www.youtube.com only: m.youtube.com has no Guide). Every Guide
+   section is the same element, told apart only by its translated heading, and the sections'
+   order varies, so the Explore section is recognised by its links: YouTube's own topic
+   channels (Music, Live) and Movies & TV. Any one is enough, as entries vary by country.
+   Sections with a collapsible header (Subscriptions, You) are skipped, so subscribing to one
+   of those channels can't hide the Subscriptions section. See issue #1 for a sturdier way. */
+html[data-yourtube-hide-guide-explore] ytd-guide-renderer ytd-guide-section-renderer:not(:has(ytd-guide-collapsible-section-entry-renderer)):has(
+    a[href="/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ"], /* Music */
+    a[href="/channel/UC4R8DWoMoI7CAwX8_LjQHig"], /* Live */
+    a[href="/feed/storefront"] /* Movies & TV */
+  ) {
+  display: none !important;
+}

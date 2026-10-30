@@ -41,6 +41,17 @@ section > label:not(.toggle) {
   font-weight: 500;
 }
 
+/* Heads a section holding several related toggles. */
+section > h2 {
+  margin: 0 0 4px;
+  font-size: inherit;
+  font-weight: 500;
+}
+
+.toggle + .toggle {
+  margin-top: 4px;
+}
+
 select,
 input[type="text"] {
   box-sizing: border-box;

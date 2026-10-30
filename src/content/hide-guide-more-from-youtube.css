@@ -1,0 +1,15 @@
+/* Hide More from YouTube in the Guide (www.youtube.com only: m.youtube.com has no Guide).
+   Every Guide section is the same element, told apart only by its translated heading, and the
+   sections' order varies, so the More from YouTube section is recognised by its links to
+   YouTube's other products. Any one is enough, as entries vary by country (YouTube TV is
+   US-only). Sections with a collapsible header (Subscriptions, You) are skipped. See issue #1
+   for a sturdier way. */
+html[data-yourtube-hide-guide-more-from-youtube] ytd-guide-renderer ytd-guide-section-renderer:not(:has(ytd-guide-collapsible-section-entry-renderer)):has(
+    a[href="/premium"],
+    a[href^="https://music.youtube.com"],
+    a[href^="https://www.youtubekids.com"],
+    a[href^="https://tv.youtube.com"],
+    a[href="/labs"]
+  ) {
+  display: none !important;
+}
