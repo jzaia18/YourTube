@@ -5,5 +5,5 @@ import { DEFAULT_SETTINGS } from "../shared/settings.js";
 browser.runtime.onInstalled.addListener(async ({ reason }) => {
   const existing = await browser.storage.sync.get(DEFAULT_SETTINGS);
   await browser.storage.sync.set(existing);
-  console.log(`[OurTube] onInstalled (${reason})`, existing);
+  console.log(`[YourTube] onInstalled (${reason})`, existing);
 });

@@ -1,4 +1,4 @@
-# OurTube
+# YourTube
 
 Browser extension (Manifest V3, Chrome and Firefox) that rewrites the YouTube UI on www.youtube.com, m.youtube.com, and www.youtube-nocookie.com. Plain JS/CSS loaded directly by the browser: no build step, no bundler, no dependencies. Keep it that way unless the owner asks otherwise.
 
@@ -7,7 +7,7 @@ Browser extension (Manifest V3, Chrome and Firefox) that rewrites the YouTube UI
 Every change upholds all of these; a feature request that conflicts with one goes back to the owner before any code is written. `README.md` carries a short user-facing summary of these principles; update it whenever this list changes.
 
 1. **Every behaviour is configurable.** Each feature ships with its own setting to disable it, added in the same change as the feature. Settings are clear and intuitive: labelled by the visible effect on YouTube in plain language, not by implementation names. The default (on or off) varies per feature: ask the owner when creating each one. Toggling a setting takes effect immediately in every open YouTube tab, with no reload.
-2. **Unimposing.** Changes to the page are minimal and blend into YouTube's design; at a glance the altered page is still obviously YouTube. Build added UI from YouTube's own look: its `--yt-spec-*` CSS variables (which also track light/dark theme), fonts, spacing, and existing element patterns, rather than a separate OurTube style.
+2. **Unimposing.** Changes to the page are minimal and blend into YouTube's design; at a glance the altered page is still obviously YouTube. Build added UI from YouTube's own look: its `--yt-spec-*` CSS variables (which also track light/dark theme), fonts, spacing, and existing element patterns, rather than a separate YourTube style.
 3. **Works logged in and logged out.** Every feature works for both. YouTube serves different markup and content to each (e.g. sign-in prompts, no subscriptions or history, a sparse home feed when logged out), so verify features in both states.
 4. **Aesthetic only.** The extension changes how the page renders on the user's screen; it never sends, alters, or blocks requests on its own. Every request YouTube receives comes from the user's own deliberate navigation, to a page they could visit anyway (a restyled link may lead somewhere new). Leave YouTube's own JS, network traffic, and user actions untouched: no intercepting or modifying requests, no requests made on the user's behalf, no synthetic clicks or other interactions with YouTube controls. Prefer hiding elements with CSS over removing them from the DOM, so YouTube's scripts keep seeing the page they built.
 5. **Chrome and Firefox.** Every feature works in both browsers from one codebase. Use only WebExtension APIs and manifest keys both support and verify features in both. Call extension APIs through the promise-based `browser.*` namespace, native to Firefox and available in Chrome 148+.
@@ -27,15 +27,15 @@ Settings flow through `browser.storage.sync`: defaults in `src/shared/settings.j
 ## YouTube gotchas
 
 - YouTube is a SPA on desktop and mobile: content scripts run once per tab, not once per page. On desktop, the `yt-navigate-finish` document event fires after each in-app navigation.
-- To scope CSS to one page: on desktop, YouTube keeps earlier pages alive but hidden, and each `ytd-browse` names its page in `page-subtype` (e.g. `subscriptions`, `home`). Mobile has one page at a time and no name for it, so `content.js` keeps the current `location.pathname` in `html[data-ourtube-path]`, updated through the Navigation API's `currententrychange` event.
+- To scope CSS to one page: on desktop, YouTube keeps earlier pages alive but hidden, and each `ytd-browse` names its page in `page-subtype` (e.g. `subscriptions`, `home`). Mobile has one page at a time and no name for it, so `content.js` keeps the current `location.pathname` in `html[data-yourtube-path]`, updated through the Navigation API's `currententrychange` event.
 - YouTube renders lazily and re-renders its custom elements (`ytd-*` desktop, `ytm-*` mobile); elements may not exist at `document_idle` and may be replaced later. Prefer CSS rewrites; for DOM rewrites, use a `MutationObserver` and make every rewrite idempotent.
 - m.youtube.com is a separate app with different markup (e.g. its logo is `ytm-home-logo > button[role=link]`, not a link). Its header disables pointer events for its children, it handles clicks anywhere inside some of its elements, and its router turns clicks on plain `<a>` elements inside the app into in-app navigation.
 - www.youtube-nocookie.com serves only embedded players (`/embed/<id>`; its root is a 404), almost always inside iframes on other websites. www.youtube.com serves the same players at `/embed/<id>`.
-- Scope each feature's CSS under its own `html[data-ourtube-<feature>]` attribute, set only while the feature is active, so turning it off reverts the CSS live.
+- Scope each feature's CSS under its own `html[data-yourtube-<feature>]` attribute, set only while the feature is active, so turning it off reverts the CSS live.
 - To change what a YouTube control does, hide it with CSS and insert a plain look-alike beside it (`src/content/logo-link.js` is the pattern); YouTube's element and its event handling stay untouched. Place the look-alike outside any YouTube element that handles clicks itself. On desktop a plain `<a>` gets a full page load; on mobile, YouTube's router navigates in-app.
 - YouTube's CSS custom properties beyond `--yt-spec-*` have obfuscated names (`--t7f9…`) that change between releases; to match YouTube styling, reuse YouTube's classes or copy computed styles instead of naming those variables.
 - YouTube translates visible text and `aria-label`s into the user's language. Select elements by tag, id, or class (e.g. the class `you-chat-entrypoint-button` marks every Ask button), never by text or label; when markup only shows up logged in, ask the owner to copy it from DevTools.
-- Prefix every injected id, class, and attribute with `ourtube-` to avoid collisions with YouTube.
+- Prefix every injected id, class, and attribute with `yourtube-` to avoid collisions with YouTube.
 
 ## Conventions
 
@@ -43,7 +43,7 @@ Settings flow through `browser.storage.sync`: defaults in `src/shared/settings.j
 - Minimum versions are Chrome 152 and Firefox 147 (`minimum_chrome_version`, `strict_min_version`). Chrome 152 completes `browser.*` namespace and promise support; Firefox 147 is the first release with the Navigation API (`content.js` tracks the current page with it). Raise them only when a needed API requires it.
 - `browser_specific_settings.gecko.id` is permanent once the extension is signed by Mozilla, and `storage.sync` depends on it; keep it unchanged.
 - Leave all changes uncommitted in the working tree; the owner reviews and commits manually.
-- Log with a `[OurTube]` prefix.
+- Log with a `[YourTube]` prefix.
 - Request the narrowest `permissions` / `host_permissions` that work; every addition triggers a new permission warning for users.
 
 ## Testing
@@ -60,7 +60,7 @@ Pure logic lives in `src/shared/` and is unit-tested in `tests/` with Node's bui
 
 ### Issue tracker
 
-GitHub Issues on `jzaia18/OurTube`, via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+GitHub Issues on `jzaia18/YourTube`, via the `gh` CLI. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 

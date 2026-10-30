@@ -1,4 +1,4 @@
-# OurTube
+# YourTube
 
 A browser extension that rewrites parts of the YouTube UI, each change individually configurable by the user.
 
@@ -7,7 +7,7 @@ A browser extension that rewrites parts of the YouTube UI, each change individua
 ### Settings
 
 **Feature**:
-One user-visible change OurTube makes to YouTube, paired with its own setting that can turn it off.
+One user-visible change YourTube makes to YouTube, paired with its own setting that can turn it off.
 _Avoid_: Mod, tweak, rewrite
 
 **Master switch**:

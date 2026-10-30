@@ -1,20 +1,20 @@
-# OurTube
-Make YouTube for "Us" Again
+# YourTube
+Put YouTube back in *Your* hands
 
 A browser extension for Chrome and Firefox that rewrites the YouTube UI.
 
 ## Principles
 
-- **You're in control.** Every change OurTube makes can be switched off in its settings, and toggles apply instantly.
+- **You're in control.** Every change YourTube makes can be switched off in its settings, and toggles apply instantly.
 - **Still YouTube.** Changes are subtle and match YouTube's own look.
 - **Signed in or not.** Everything works whether or not you're logged in.
-- **Looks only.** OurTube changes what you see on your screen. It never sends anything to YouTube on its own; at most, a link leads somewhere new when you click it.
+- **Looks only.** YourTube changes what you see on your screen. It never sends anything to YouTube on its own; at most, a link leads somewhere new when you click it.
 - **Chrome and Firefox.** Works in both browsers.
 - **Everywhere on YouTube.** Works on YouTube's desktop and mobile sites, and in embedded videos.
 
 ## Features
 
-Configure everything from the OurTube button in the browser toolbar.
+Configure everything from the YourTube button in the browser toolbar.
 
 - **Logo link:** choose where the YouTube logo takes you: the homepage (YouTube's default), Subscriptions, Watch later, or any YouTube page you like.
 - **Hide the Ask button:** remove YouTube's AI "Ask" button from videos.
@@ -29,11 +29,11 @@ Requires Chrome 152+ or Firefox 147+.
 1. Open `chrome://extensions` and turn on **Developer mode** (top right).
 2. Click **Load unpacked** and select this repository's root folder.
 
-After editing files, click the reload icon on the OurTube card in `chrome://extensions`, then refresh the YouTube tab.
+After editing files, click the reload icon on the YourTube card in `chrome://extensions`, then refresh the YouTube tab.
 
 ### Firefox
 
-Either run `npx web-ext run` from the repository root (requires Node.js; opens a fresh Firefox profile with OurTube loaded and reloads it whenever files change), or:
+Either run `npx web-ext run` from the repository root (requires Node.js; opens a fresh Firefox profile with YourTube loaded and reloads it whenever files change), or:
 
 1. Open `about:debugging#/runtime/this-firefox`.
 2. Click **Load Temporary Add-on…** and select `manifest.json` in this repository.

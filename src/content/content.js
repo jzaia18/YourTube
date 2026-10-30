@@ -23,10 +23,10 @@
     applyAll();
   });
 
-  // Mark the current page's path on <html> (data-ourtube-path), so feature CSS can target one
+  // Mark the current page's path on <html> (data-yourtube-path), so feature CSS can target one
   // page. currententrychange fires on every in-app navigation, back/forward included. Set up
   // last and guarded, so a missing Navigation API only loses the marker, not every feature.
-  const markPath = () => (document.documentElement.dataset.ourtubePath = location.pathname);
+  const markPath = () => (document.documentElement.dataset.yourtubePath = location.pathname);
   markPath();
   window.navigation?.addEventListener("currententrychange", markPath);
 })();

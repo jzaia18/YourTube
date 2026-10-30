@@ -2,7 +2,7 @@
    which, unlike its aria-label, isn't translated. It appears below the player (inside
    yt-button-view-model, hidden too so the row leaves no gap) and in the fullscreen player's
    quick actions. */
-html[data-ourtube-hide-ask-button] .you-chat-entrypoint-button,
-html[data-ourtube-hide-ask-button] yt-button-view-model:has(> .you-chat-entrypoint-button) {
+html[data-yourtube-hide-ask-button] .you-chat-entrypoint-button,
+html[data-yourtube-hide-ask-button] yt-button-view-model:has(> .you-chat-entrypoint-button) {
   display: none !important;
 }

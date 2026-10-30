@@ -3,8 +3,8 @@
 // link is inserted beside it. YouTube's element and its click handling stay untouched, so
 // a plain click on our link is an ordinary full page load.
 const logoLink = (() => {
-  const ACTIVE_ATTR = "data-ourtube-logo-link";
-  const COPY_CLASS = "ourtube-logo-link";
+  const ACTIVE_ATTR = "data-yourtube-logo-link";
+  const COPY_CLASS = "yourtube-logo-link";
   // Keep in sync with LOGO_DESTINATIONS in src/shared/logo-link.js (checked by tests/content-copies.test.js).
   const DESTINATIONS = {
     subscriptions: { path: "/feed/subscriptions", label: "Subscriptions" },
@@ -176,7 +176,7 @@ const logoLink = (() => {
     if (!source) return null;
 
     const box = document.createElement("span");
-    box.className = `${site.iconClass} ourtube-logo-icon`;
+    box.className = `${site.iconClass} yourtube-logo-icon`;
     const sized = doodle ?? icon;
     const style = getComputedStyle(sized);
     box.style.width = style.width;
@@ -192,10 +192,10 @@ const logoLink = (() => {
     for (const element of [root, ...root.querySelectorAll("*")]) {
       for (const attr of [...element.attributes]) {
         let value = attr.value;
-        if (attr.name === "id") value = `ourtube-${value}`;
+        if (attr.name === "id") value = `yourtube-${value}`;
         for (const id of ids) {
-          value = value.replaceAll(`url(#${id})`, `url(#ourtube-${id})`);
-          if (value === `#${id}`) value = `#ourtube-${id}`;
+          value = value.replaceAll(`url(#${id})`, `url(#yourtube-${id})`);
+          if (value === `#${id}`) value = `#yourtube-${id}`;
         }
         if (value !== attr.value) element.setAttribute(attr.name, value);
       }
