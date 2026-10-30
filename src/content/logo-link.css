@@ -1,0 +1,32 @@
+/* Logo link: hide YouTube's logo link and lay out our copy (inserted by logo-link.js) the same way. */
+
+/* Hide selectors mirror SITES in logo-link.js. */
+html[data-ourtube-logo-link] ytd-topbar-logo-renderer > a#logo,
+html[data-ourtube-logo-link] ytm-home-logo {
+  display: none !important;
+}
+
+html[data-ourtube-logo-link] .ourtube-logo-link {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  /* m.youtube.com's header disables pointer events for its children. */
+  pointer-events: auto;
+}
+
+html[data-ourtube-logo-link] .ourtube-logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  flex: 0 0 auto;
+  fill: currentcolor;
+}
+
+html[data-ourtube-logo-link] .ourtube-logo-icon > svg,
+html[data-ourtube-logo-link] .ourtube-logo-icon > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

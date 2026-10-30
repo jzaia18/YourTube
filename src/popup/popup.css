@@ -1,5 +1,10 @@
+/* Follow the browser's light or dark theme; light-dark() picks each colour's variant. */
+:root {
+  color-scheme: light dark;
+}
+
 body {
-  width: 200px;
+  width: 260px;
   margin: 0;
   padding: 12px 16px;
   font: 14px/1.4 system-ui, sans-serif;
@@ -8,12 +13,47 @@ body {
 h1 {
   margin: 0 0 8px;
   font-size: 16px;
-  color: #5b3fd9;
+  color: light-dark(#5b3fd9, #a594f9);
 }
 
-label {
+.toggle {
   display: flex;
   align-items: center;
   gap: 6px;
   cursor: pointer;
+}
+
+.note {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: light-dark(#666, #aaa);
+}
+
+section {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid light-dark(#ddd, #444);
+}
+
+section > label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+select,
+input[type="text"] {
+  box-sizing: border-box;
+  width: 100%;
+  font: inherit;
+}
+
+#logo-custom {
+  margin-top: 6px;
+}
+
+.error {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: light-dark(#c00, #ff7b72);
 }

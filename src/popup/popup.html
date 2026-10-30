@@ -9,9 +9,27 @@
   </head>
   <body>
     <h1>OurTube</h1>
-    <label>
+    <label class="toggle">
       <input type="checkbox" id="enabled" />
       Enabled
     </label>
+    <p id="off-note" class="note" hidden>OurTube is off: changes will apply when you turn it back on.</p>
+
+    <section>
+      <label for="logo-destination">YouTube logo goes to</label>
+      <select id="logo-destination"></select>
+      <div id="logo-custom" hidden>
+        <input
+          type="text"
+          id="logo-custom-path"
+          placeholder="/feed/history"
+          spellcheck="false"
+          autocomplete="off"
+          aria-describedby="logo-custom-error logo-custom-hint"
+        />
+        <p id="logo-custom-error" class="error" hidden></p>
+        <p id="logo-custom-hint" class="note" hidden></p>
+      </div>
+    </section>
   </body>
 </html>

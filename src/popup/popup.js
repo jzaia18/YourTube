@@ -1,12 +1,76 @@
 import { DEFAULT_SETTINGS } from "../shared/settings.js";
+import { LOGO_DESTINATIONS, normalizeCustomPath } from "../shared/logo-link.js";
 
 // The popup is a fresh page each time it opens and is destroyed when it closes,
 // so all state lives in browser.storage, never in variables here.
-const checkbox = document.getElementById("enabled");
+const enabled = document.getElementById("enabled");
+const offNote = document.getElementById("off-note");
+const destination = document.getElementById("logo-destination");
+const custom = document.getElementById("logo-custom");
+const customPath = document.getElementById("logo-custom-path");
+const customError = document.getElementById("logo-custom-error");
+const customHint = document.getElementById("logo-custom-hint");
 
-const { enabled } = await browser.storage.sync.get(DEFAULT_SETTINGS);
-checkbox.checked = enabled;
+for (const [value, label] of Object.entries(LOGO_DESTINATIONS)) {
+  destination.add(new Option(label, value));
+}
 
-checkbox.addEventListener("change", () => {
-  browser.storage.sync.set({ enabled: checkbox.checked });
+const settings = await browser.storage.sync.get(DEFAULT_SETTINGS);
+enabled.checked = settings.enabled;
+destination.value = settings.logoDestination;
+customPath.value = settings.logoCustomPath;
+let savedPath = settings.logoCustomPath; // the custom path the logo uses right now
+render();
+
+function render() {
+  offNote.hidden = enabled.checked;
+  custom.hidden = destination.value !== "custom";
+
+  const result = normalizeCustomPath(customPath.value);
+  customPath.setAttribute("aria-invalid", String(!result.ok));
+  customError.hidden = result.ok;
+  customError.textContent = result.ok ? "" : result.error;
+  // Say where the logo goes when the field doesn't hold a page it can use.
+  let hint = "";
+  if (!result.ok) hint = `Not saved: the logo still goes to ${savedPath || "the homepage"}.`;
+  else if (result.path === "") hint = "Until you enter a page, the logo goes to the homepage.";
+  customHint.hidden = !hint;
+  customHint.textContent = hint;
+}
+
+enabled.addEventListener("change", () => {
+  render();
+  browser.storage.sync.set({ enabled: enabled.checked });
 });
+
+destination.addEventListener("change", () => {
+  render();
+  browser.storage.sync.set({ logoDestination: destination.value });
+});
+
+// Saves the typed path if it's valid and differs from the saved one.
+let saveTimer;
+function saveCustomPath() {
+  clearTimeout(saveTimer);
+  const result = normalizeCustomPath(customPath.value);
+  if (!result.ok || result.path === savedPath) return;
+  savedPath = result.path;
+  browser.storage.sync.set({ logoCustomPath: savedPath });
+}
+
+// Save as the user types, debounced because storage.sync limits writes per minute.
+customPath.addEventListener("input", () => {
+  render();
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveCustomPath, 300);
+});
+
+// Committing the field (Enter, or leaving it) saves at once and shows the cleaned-up form.
+customPath.addEventListener("change", () => {
+  saveCustomPath();
+  const result = normalizeCustomPath(customPath.value);
+  if (result.ok) customPath.value = result.path;
+});
+
+// Closing the popup destroys it, pending save included, so save first.
+window.addEventListener("pagehide", saveCustomPath);
