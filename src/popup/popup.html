@@ -10,7 +10,7 @@
   <body>
     <h1>OurTube</h1>
     <label class="toggle">
-      <input type="checkbox" id="enabled" />
+      <input type="checkbox" id="enabled" data-setting="enabled" />
       Enabled
     </label>
     <p id="off-note" class="note" hidden>OurTube is off: changes will apply when you turn it back on.</p>
@@ -30,6 +30,13 @@
         <p id="logo-custom-error" class="error" hidden></p>
         <p id="logo-custom-hint" class="note" hidden></p>
       </div>
+    </section>
+
+    <section>
+      <label class="toggle">
+        <input type="checkbox" data-setting="hideAskButton" />
+        Hide the “Ask” button
+      </label>
     </section>
   </body>
 </html>

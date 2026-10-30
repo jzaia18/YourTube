@@ -23,3 +23,13 @@ _Avoid_: Logo redirect, home button reroute
 **Logo destination**:
 The page the YouTube logo leads to: Homepage, Subscriptions, Watch later, or Custom (a user-entered path on youtube.com). Homepage is YouTube's own behaviour.
 _Avoid_: Logo target, home page setting
+
+### Watch page
+
+**Watch page**:
+The YouTube page that plays a single video (youtube.com/watch), with the video's title, buttons, description, and comments below the player. Shorts are not watch pages.
+_Avoid_: Video page, player page
+
+**Ask button**:
+YouTube's button for asking its AI about the video being watched, labelled "Ask". It sits with the buttons below the player and among the fullscreen player's quick actions.
+_Avoid_: Ask AI button, Gemini button

@@ -3,8 +3,8 @@
 // in manifest.json each define a top-level object with apply(settings); this script loads the
 // settings and hands them to every feature, now and whenever they change.
 (() => {
-  const DEFAULT_SETTINGS = { enabled: true, logoDestination: "homepage", logoCustomPath: "" }; // keep in sync with src/shared/settings.js (checked by tests/content-copies.test.js)
-  const FEATURES = [logoLink];
+  const DEFAULT_SETTINGS = { enabled: true, logoDestination: "homepage", logoCustomPath: "", hideAskButton: true }; // keep in sync with src/shared/settings.js (checked by tests/content-copies.test.js)
+  const FEATURES = [logoLink, hideAskButton];
 
   let settings = { ...DEFAULT_SETTINGS };
   const applyAll = () => FEATURES.forEach((feature) => feature.apply(settings));

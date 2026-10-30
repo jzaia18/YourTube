@@ -16,7 +16,9 @@ for (const [value, label] of Object.entries(LOGO_DESTINATIONS)) {
 }
 
 const settings = await browser.storage.sync.get(DEFAULT_SETTINGS);
-enabled.checked = settings.enabled;
+// Each checkbox with a data-setting attribute stores the boolean setting it names.
+const checkboxes = document.querySelectorAll("input[type=checkbox][data-setting]");
+for (const checkbox of checkboxes) checkbox.checked = settings[checkbox.dataset.setting];
 destination.value = settings.logoDestination;
 customPath.value = settings.logoCustomPath;
 let savedPath = settings.logoCustomPath; // the custom path the logo uses right now
@@ -38,10 +40,12 @@ function render() {
   customHint.textContent = hint;
 }
 
-enabled.addEventListener("change", () => {
-  render();
-  browser.storage.sync.set({ enabled: enabled.checked });
-});
+for (const checkbox of checkboxes) {
+  checkbox.addEventListener("change", () => {
+    render();
+    browser.storage.sync.set({ [checkbox.dataset.setting]: checkbox.checked });
+  });
+}
 
 destination.addEventListener("change", () => {
   render();

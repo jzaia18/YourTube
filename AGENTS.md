@@ -33,6 +33,7 @@ Settings flow through `browser.storage.sync`: defaults in `src/shared/settings.j
 - Scope each feature's CSS under its own `html[data-ourtube-<feature>]` attribute, set only while the feature is active, so turning it off reverts the CSS live.
 - To change what a YouTube control does, hide it with CSS and insert a plain look-alike beside it (`src/content/logo-link.js` is the pattern); YouTube's element and its event handling stay untouched. Place the look-alike outside any YouTube element that handles clicks itself. On desktop a plain `<a>` gets a full page load; on mobile, YouTube's router navigates in-app.
 - YouTube's CSS custom properties beyond `--yt-spec-*` have obfuscated names (`--t7f9…`) that change between releases; to match YouTube styling, reuse YouTube's classes or copy computed styles instead of naming those variables.
+- YouTube translates visible text and `aria-label`s into the user's language. Select elements by tag, id, or class (e.g. the class `you-chat-entrypoint-button` marks every Ask button), never by text or label; when markup only shows up logged in, ask the owner to copy it from DevTools.
 - Prefix every injected id, class, and attribute with `ourtube-` to avoid collisions with YouTube.
 
 ## Conventions

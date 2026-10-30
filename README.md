@@ -17,6 +17,7 @@ A browser extension for Chrome and Firefox that rewrites the YouTube UI.
 Configure everything from the OurTube button in the browser toolbar.
 
 - **Logo link:** choose where the YouTube logo takes you: the homepage (YouTube's default), Subscriptions, Watch later, or any YouTube page you like.
+- **Hide the Ask button:** remove YouTube's AI "Ask" button from videos.
 
 ## Install (development)
 
