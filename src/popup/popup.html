@@ -9,19 +9,20 @@
   </head>
   <body>
     <h1>YourTube</h1>
-    <label class="toggle">
+    <label class="toggle" title="Turns every YourTube change on or off at once; off shows plain YouTube.">
       <input type="checkbox" id="enabled" data-setting="enabled" />
       Enabled
     </label>
     <p id="off-note" class="note" hidden>YourTube is off: changes will apply when you turn it back on.</p>
 
-    <section>
+    <section title="Chooses the page that opens when you click the YouTube logo.">
       <label for="logo-destination">YouTube logo goes to</label>
       <select id="logo-destination"></select>
       <div id="logo-custom" hidden>
         <input
           type="text"
           id="logo-custom-path"
+          title="Paste a YouTube link or type a page, like /feed/history, for the logo to open."
           placeholder="/feed/history"
           spellcheck="false"
           autocomplete="off"
@@ -33,14 +34,14 @@
     </section>
 
     <section>
-      <label class="toggle">
+      <label class="toggle" title="Hides YouTube's AI “Ask” button below videos and in the fullscreen player.">
         <input type="checkbox" data-setting="hideAskButton" />
         Hide the “Ask” button
       </label>
     </section>
 
     <section>
-      <label class="toggle">
+      <label class="toggle" title="Hides Shorts from the Subscriptions page, leaving only regular videos.">
         <input type="checkbox" data-setting="hideShortsInSubscriptions" />
         Hide Shorts in Subscriptions
       </label>
@@ -48,11 +49,11 @@
 
     <section>
       <h2>Sidebar (Guide)</h2>
-      <label class="toggle">
+      <label class="toggle" title="Hides the sidebar (Guide) section of topic pages, like Music, Live, and Movies &amp; TV.">
         <input type="checkbox" data-setting="hideGuideExplore" />
         Hide “Explore”
       </label>
-      <label class="toggle">
+      <label class="toggle" title="Hides the sidebar (Guide) section of links to YouTube Premium, Music, Kids, and TV.">
         <input type="checkbox" data-setting="hideGuideMoreFromYouTube" />
         Hide “More from YouTube”
       </label>
