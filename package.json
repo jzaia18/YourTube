@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/"
+    "test": "node --test"
   },
   "webExt": {
     "ignoreFiles": ["tests", "docs", "package.json", "AGENTS.md", "CLAUDE.md", "GLOSSARY.md"]

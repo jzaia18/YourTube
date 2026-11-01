@@ -30,6 +30,9 @@
 
 ### Bug fixes 🐛
 
+- `npm test` works on Node 21 and later.
+  [(#6)](https://github.com/jzaia18/YourTube/pull/6)
+
 ### Contributors ✍️
 
 This release contains contributions from (in alphabetical order):
