@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "YourTube",
   "version": "0.1.0.1",
-  "version_name": "0.2.0-dev1",
+  "version_name": "0.1.0-dev1",
   "description": "Rewrites the YouTube UI.",
   "icons": {
     "16": "icons/icon-16.png",

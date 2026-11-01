@@ -1,14 +1,14 @@
 // Computes the development version a pull request should carry, and writes it into manifest.json.
 //
-// Browsers only accept 1-4 dot-separated numbers in `version`, so a development build keeps the
-// last release's number plus a fourth "dev" counter there, and shows its semver pre-release label
-// in `version_name`:
+// Browsers only accept 1-4 dot-separated numbers in `version`, so a development build adds a
+// fourth "dev" counter there, and shows its semver pre-release label in `version_name`:
 //
-//   release 0.1.0       ->  "version": "0.1.0"
-//   dev build 3 of 0.2.0 ->  "version": "0.1.0.3", "version_name": "0.2.0-dev3"
+//   dev build 3 of 0.2.0 ->  "version": "0.2.0.3", "version_name": "0.2.0-dev3"
+//   release 0.2.0        ->  "version": "0.2.0",   "version_name": "0.2.0"
 //
-// Every pull request takes main's dev counter plus one. A pull request that removes `version_name`
-// and raises `version` above main's is a release, and keeps the version it sets.
+// Every pull request takes main's dev counter plus one; after a release, the next pull request
+// starts dev1 of the following minor release. A pull request that sets both fields to the same
+// new X.Y.Z is a release, and keeps the version it sets.
 //
 // Usage: node .github/scripts/dev-version.js <main manifest.json> <pull request manifest.json>
 
@@ -16,45 +16,37 @@ import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 
 const DEV_NAME = /^(\d+)\.(\d+)\.(\d+)-dev(\d+)$/;
-
-function parseNumbers(version) {
-  if (!/^\d+(\.\d+){0,3}$/.test(version)) {
-    throw new Error(`"${version}" is not 1-4 dot-separated numbers`);
-  }
-  return version.split(".").map(Number);
-}
-
-// Negative, zero, or positive, like a sort comparator. Missing parts count as 0.
-export function compareVersions(a, b) {
-  const [x, y] = [parseNumbers(a), parseNumbers(b)];
-  for (let i = 0; i < 4; i++) {
-    const diff = (x[i] ?? 0) - (y[i] ?? 0);
-    if (diff !== 0) return diff;
-  }
-  return 0;
-}
+const RELEASE_NAME = /^(\d+)\.(\d+)\.(\d+)$/;
 
 export function isRelease(main, pr) {
-  return pr.version_name === undefined && compareVersions(pr.version, main.version) > 0;
+  return (
+    RELEASE_NAME.test(pr.version_name ?? "") &&
+    pr.version === pr.version_name &&
+    pr.version_name !== main.version_name
+  );
 }
 
 // The `{ version, version_name }` that follows main's.
 export function nextDevVersion(main) {
-  if (main.version_name === undefined) {
-    // main is a release: start the dev cycle toward the next minor release.
-    const [major, minor, patch] = parseNumbers(main.version);
-    return {
-      version: `${major}.${minor}.${patch ?? 0}.1`,
-      version_name: `${major}.${minor + 1}.0-dev1`,
-    };
+  // A manifest without version_name predates this scheme: count it as dev0 of its version.
+  const name = main.version_name ?? `${main.version}-dev0`;
+  const dev = name.match(DEV_NAME);
+  if (dev) {
+    const [, major, minor, patch, n] = dev.map(Number);
+    return devVersion(major, minor, patch, n + 1);
   }
-  const match = main.version_name.match(DEV_NAME);
-  if (!match) throw new Error(`main's version_name "${main.version_name}" is not X.Y.Z-devN`);
-  const [, major, minor, patch, dev] = match.map(Number);
-  const [a, b, c] = parseNumbers(main.version);
+  const release = name.match(RELEASE_NAME);
+  if (release) {
+    const [, major, minor] = release.map(Number);
+    return devVersion(major, minor + 1, 0, 1);
+  }
+  throw new Error(`main's version_name "${name}" is neither X.Y.Z nor X.Y.Z-devN`);
+}
+
+function devVersion(major, minor, patch, n) {
   return {
-    version: `${a}.${b ?? 0}.${c ?? 0}.${dev + 1}`,
-    version_name: `${major}.${minor}.${patch}-dev${dev + 1}`,
+    version: `${major}.${minor}.${patch}.${n}`,
+    version_name: `${major}.${minor}.${patch}-dev${n}`,
   };
 }
 

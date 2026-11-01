@@ -22,48 +22,14 @@ pull requests.
 
 ## Versioning
 
-Browsers only accept 1–4 dot-separated numbers in `version`. A development build keeps the last
-release's number plus a fourth "dev" counter, and shows its pre-release label in `version_name`:
+Browsers only accept 1–4 dot-separated numbers in `version`. A development build adds a fourth
+"dev" counter to the release it leads to, and shows its pre-release label in `version_name`:
 
 | Build                         | `version` | `version_name` |
 | ----------------------------- | --------- | -------------- |
-| Release 0.1.0                 | `0.1.0`   | (none)         |
-| Dev build *N* toward 0.2.0    | `0.1.0.N` | `0.2.0-devN`   |
-| Release 0.2.0                 | `0.2.0`   | (none)         |
+| Release 0.1.0                 | `0.1.0`   | `0.1.0`        |
+| Dev build *N* toward 0.2.0    | `0.2.0.N` | `0.2.0-devN`   |
+| Release 0.2.0                 | `0.2.0`   | `0.2.0`        |
 
 Each pull request takes `main`'s dev counter plus one; after a release, the next pull request
 starts `-dev1` of the following minor release. Only releases are published to browser stores.
-
-## Releasing
-
-Open a pull request that:
-
-1. Sets `version` in `manifest.json` to the release number and removes `version_name`. The
-   workflow treats a pull request with no `version_name` and a `version` above `main`'s as a
-   release: it keeps that version and skips the changelog link check.
-2. Renames the changelog's top heading to `# Release X.Y.Z` and deletes its empty categories.
-3. Adds a new development release above it for the next minor version:
-
-```markdown
-# Release X.Y.Z-dev (development release)
-
-### New features since last release
-
-### Improvements 🛠
-
-### Breaking changes 💔
-
-### Deprecations 👋
-
-### Internal changes ⚙️
-
-### Documentation 📝
-
-### Bug fixes 🐛
-
-### Contributors ✍️
-
-This release contains contributions from (in alphabetical order):
-
----
-```

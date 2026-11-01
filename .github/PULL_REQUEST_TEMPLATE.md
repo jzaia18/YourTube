@@ -14,8 +14,8 @@ Please complete the following checklist when submitting a PR:
 - [ ] Page behaviour is checked by hand in Chrome and Firefox, logged in and logged out, on every
       YouTube site the change touches.
 
-- [ ] Add a new entry to the `.github/CHANGELOG.md` file, summarizing the change, and including a
-      link back to the PR. The version in `manifest.json` is updated automatically.
+- [ ] An entry exists in the `.github/CHANGELOG.md` file, summarizing the change, and including a
+      link back to the PR.
 
 When all the above are checked, delete everything above the dashed line and fill in the pull
 request template.

@@ -49,10 +49,12 @@ jobs:
           HEAD_REF: ${{ github.head_ref }}
           VERSION_NAME: ${{ steps.version.outputs.version_name }}
         run: |
+          # The public noreply address of GitHub's own github-actions[bot] account (user ID 41898282),
+          # so the commit shows that account as its author. Not a secret.
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # [skip ci] stops GitHub from queuing a run for this push that would wait for approval.
-          git commit -am "Update version to $VERSION_NAME [skip ci]"
+          git commit -am "[skip ci] Update version to $VERSION_NAME"
           git push origin "HEAD:refs/heads/$HEAD_REF"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 

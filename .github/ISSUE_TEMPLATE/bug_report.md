@@ -16,9 +16,10 @@ labels: bug, needs-triage
 
 * *YourTube version:* (shown on your browser's extensions page)
 
-* *Browser and version:*
+* *Browser and version:* (Chrome: ⋮ menu → Help → About Google Chrome. Firefox: ☰ menu → Help →
+  About Firefox.)
 
-* *YouTube site:* (www.youtube.com, m.youtube.com, or a video embedded on another website)
+* *YouTube URL:*
 
 * *Logged in to YouTube:* (yes / no)
 
