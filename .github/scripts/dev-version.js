@@ -1,4 +1,4 @@
-// Computes the development version a pull request should carry, and writes it into manifest.json.
+// Checks that a pull request's manifest.json carries the development version it should.
 //
 // Browsers only accept 1-4 dot-separated numbers in `version`, so a development build adds a
 // fourth "dev" counter there, and shows its semver pre-release label in `version_name`:
@@ -12,7 +12,7 @@
 //
 // Usage: node .github/scripts/dev-version.js <main manifest.json> <pull request manifest.json>
 
-import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 
 const DEV_NAME = /^(\d+)\.(\d+)\.(\d+)-dev(\d+)$/;
@@ -50,45 +50,26 @@ function devVersion(major, minor, patch, n) {
   };
 }
 
-// Rewrites the version fields in manifest.json's text, leaving the rest of its formatting alone.
-export function writeVersion(text, { version, version_name }) {
-  const versionLine = /^(\s*)"version": "[^"]*",\n/m;
-  if (!versionLine.test(text)) throw new Error('manifest.json has no "version" line');
-  const withoutName = text.replace(/^\s*"version_name": "[^"]*",\n/m, "");
-  return withoutName.replace(
-    versionLine,
-    (_, indent) => `${indent}"version": "${version}",\n${indent}"version_name": "${version_name}",\n`,
-  );
-}
-
 function main([mainPath, prPath]) {
   const mainManifest = JSON.parse(readFileSync(mainPath, "utf8"));
-  const prText = readFileSync(prPath, "utf8");
-  const prManifest = JSON.parse(prText);
-  const outputs = { release: false, changed: false };
-
-  console.log(`[YourTube] main: ${mainManifest.version_name ?? mainManifest.version}`);
-  console.log(`[YourTube] pull request: ${prManifest.version_name ?? prManifest.version}`);
+  const prManifest = JSON.parse(readFileSync(prPath, "utf8"));
+  const label = (m) => m.version_name ?? m.version;
+  console.log(`[YourTube] main: ${label(mainManifest)}, pull request: ${label(prManifest)}`);
 
   if (isRelease(mainManifest, prManifest)) {
-    console.log(`[YourTube] Release ${prManifest.version}: keeping its version.`);
-    outputs.release = true;
-  } else {
-    const next = nextDevVersion(mainManifest);
-    outputs.version_name = next.version_name;
-    if (prManifest.version === next.version && prManifest.version_name === next.version_name) {
-      console.log(`[YourTube] Already on ${next.version_name}.`);
-    } else {
-      writeFileSync(prPath, writeVersion(prText, next));
-      console.log(`[YourTube] Updated to ${next.version_name} (version ${next.version}).`);
-      outputs.changed = true;
-    }
+    console.log(`[YourTube] Release ${prManifest.version}.`);
+    return;
   }
-
-  if (process.env.GITHUB_OUTPUT) {
-    const lines = Object.entries(outputs).map(([key, value]) => `${key}=${value}\n`);
-    appendFileSync(process.env.GITHUB_OUTPUT, lines.join(""));
+  const next = nextDevVersion(mainManifest);
+  if (prManifest.version === next.version && prManifest.version_name === next.version_name) {
+    console.log(`[YourTube] On the expected dev version, ${next.version_name}.`);
+    return;
   }
+  console.log(
+    `::error file=manifest.json::Set "version" to "${next.version}" and "version_name" to ` +
+      `"${next.version_name}" in manifest.json (one dev build after main's ${label(mainManifest)}).`,
+  );
+  process.exitCode = 1;
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) main(process.argv.slice(2));

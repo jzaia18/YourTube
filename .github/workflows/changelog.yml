@@ -1,0 +1,31 @@
+name: Changelog
+
+# Checks that .github/CHANGELOG.md has an entry linking back to the pull request.
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  changelog:
+    name: Changelog
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for an entry linking to this pull request
+        env:
+          LINK: "[(#${{ github.event.pull_request.number }})](${{ github.event.pull_request.html_url }})"
+        run: |
+          # A release (version_name without -dev) renames the changelog's sections instead.
+          if [[ "$(jq -r '.version_name // ""' manifest.json)" != *-dev* ]]; then
+            echo "[YourTube] Release: no entry needed."
+            exit 0
+          fi
+          if ! grep -qF "$LINK" .github/CHANGELOG.md; then
+            echo "::error file=.github/CHANGELOG.md::Add an entry to .github/CHANGELOG.md that ends with a link to this pull request: $LINK"
+            exit 1
+          fi

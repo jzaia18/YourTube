@@ -1,0 +1,26 @@
+name: Version
+
+# Checks that manifest.json carries one dev build after main's version (see
+# .github/scripts/dev-version.js), and names the expected version if not.
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    name: Version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the dev version
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch --depth=1 origin "$BASE_REF"
+          git show FETCH_HEAD:manifest.json > "$RUNNER_TEMP/main-manifest.json"
+          node .github/scripts/dev-version.js "$RUNNER_TEMP/main-manifest.json" manifest.json

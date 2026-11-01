@@ -15,12 +15,11 @@ pull requests.
   the development release at the top: one or two sentences describing the visible change, ending
   with a link back to the pull request, e.g. `[(#12)](https://github.com/jzaia18/YourTube/pull/12)`.
   Add your name to that release's contributors.
-- **Version.** The "Pull request requirements" workflow sets the version in `manifest.json` on
-  your branch whenever the pull request is opened or updated, so pull before pushing more commits.
-  Pull requests from forks can't be updated automatically: set the version the failing check
-  names by hand. The same check fails until the changelog links to the pull request.
-- **Checks.** The same workflow runs the unit tests (`npm test`) and `web-ext lint` on every push,
-  as the "Unit tests" and "Lint" checks.
+- **Version.** Set `version` and `version_name` in `manifest.json` to the next dev build after
+  `main`'s (see [Versioning](#versioning)). If another pull request merges first, merge `main`
+  into your branch and take the following number.
+- **Checks.** Every push runs four checks: "Version" (and, when it fails, names the exact version
+  to set), "Changelog", "Unit tests" (`npm test`), and "Lint" (`web-ext lint`).
 
 ## Versioning
 

@@ -17,6 +17,8 @@ Please complete the following checklist when submitting a PR:
 - [ ] An entry exists in the `.github/CHANGELOG.md` file, summarizing the change, and including a
       link back to the PR.
 
+- [ ] The version in `manifest.json` is the next dev build after `main`'s.
+
 When all the above are checked, delete everything above the dashed line and fill in the pull
 request template.
 
