@@ -1,0 +1,6 @@
+/* Hide Store shelf: on desktop's watch page (ytd-watch-flexy), the channel's store is one
+   ytd-merch-shelf-renderer below the video's details, beside the comments in the same container,
+   so only the shelf itself is hidden. m.youtube.com has no Store shelf. */
+html[data-yourtube-hide-store-shelf] ytd-watch-flexy ytd-merch-shelf-renderer {
+  display: none !important;
+}
