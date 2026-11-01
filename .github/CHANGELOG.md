@@ -23,6 +23,9 @@
 - Every pull request now gets the next development version in `manifest.json` automatically, and must add a changelog entry linking back to it.
   [(#3)](https://github.com/jzaia18/YourTube/pull/3)
 
+- Every push to a pull request runs the unit tests and `web-ext lint`.
+  [(#7)](https://github.com/jzaia18/YourTube/pull/7)
+
 ### Documentation 📝
 
 - Added this changelog, pull request and issue templates, and a contributing guide.
