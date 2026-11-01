@@ -44,3 +44,7 @@ Temporary add-ons are removed when Firefox restarts.
 ### Tests
 
 `npm test` runs the unit tests (Node.js 18+, no dependencies to install).
+
+## Contributing
+
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for pull requests, the changelog, and versioning.
