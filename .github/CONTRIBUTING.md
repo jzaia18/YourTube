@@ -18,8 +18,7 @@ pull requests.
 - **Version.** Set `version` and `version_name` in `manifest.json` to the next dev build after
   `main`'s (see [Versioning](#versioning)). If another pull request merges first, merge `main`
   into your branch and take the following number.
-- **Checks.** Every push runs four checks: "Version" (and, when it fails, names the exact version
-  to set), "Changelog", "Unit tests" (`npm test`), and "Lint" (`web-ext lint`).
+- **Checks.** All CI checks must pass before a pull request can merge.
 
 ## Versioning
 
