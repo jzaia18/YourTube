@@ -70,7 +70,7 @@ jobs:
             echo "::error file=manifest.json::Pull requests from forks can't be updated automatically. Set \"version_name\" to \"$VERSION_NAME\" and \"version\" to match, as printed in the 'Set the dev version' step."
             ok=false
           fi
-          if [[ "$RELEASE" != true ]] && ! grep -qF "/pull/$PR_NUMBER)" .github/CHANGELOG.md; then
+          if [[ "$RELEASE" != true ]] && ! grep -qF "[(#$PR_NUMBER)]($PR_URL)" .github/CHANGELOG.md; then
             echo "::error file=.github/CHANGELOG.md::Add an entry to .github/CHANGELOG.md that ends with a link to this pull request: [(#$PR_NUMBER)]($PR_URL)"
             ok=false
           fi
