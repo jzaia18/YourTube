@@ -42,7 +42,7 @@ Settings flow through `browser.storage.sync`: defaults in `src/shared/settings.j
 - Manifest V3 only. The extension CSP forbids inline `<script>` and `eval`; all JS lives in files.
 - Minimum versions are Chrome 152 and Firefox 147 (`minimum_chrome_version`, `strict_min_version`). Chrome 152 completes `browser.*` namespace and promise support; Firefox 147 is the first release with the Navigation API (`content.js` tracks the current page with it). Raise them only when a needed API requires it.
 - `browser_specific_settings.gecko.id` is permanent once the extension is signed by Mozilla, and `storage.sync` depends on it; keep it unchanged.
-- Leave all changes uncommitted in the working tree; the owner reviews and commits manually.
+- Deliver changes as pull requests from a branch off `main`; the owner reviews and merges. Keep each PR small and focused: one feature or fix, small enough to review in one sitting. Split unrelated changes into separate PRs.
 - Log with a `[YourTube]` prefix.
 - Request the narrowest `permissions` / `host_permissions` that work; every addition triggers a new permission warning for users.
 
