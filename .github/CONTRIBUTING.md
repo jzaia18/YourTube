@@ -19,6 +19,8 @@ pull requests.
   your branch whenever the pull request is opened or updated, so pull before pushing more commits.
   Pull requests from forks can't be updated automatically: set the version the failing check
   names by hand. The same check fails until the changelog links to the pull request.
+- **Checks.** The same workflow runs the unit tests (`npm test`) and `web-ext lint` on every push,
+  as the "Unit tests" and "Lint" checks.
 
 ## Versioning
 

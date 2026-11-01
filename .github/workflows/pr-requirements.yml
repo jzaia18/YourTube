@@ -1,11 +1,12 @@
 name: Pull request requirements
 
-# Sets the pull request's dev version in manifest.json (see .github/scripts/dev-version.js) and
-# checks that .github/CHANGELOG.md links back to the pull request.
+# Sets the pull request's dev version in manifest.json (see .github/scripts/dev-version.js),
+# checks that .github/CHANGELOG.md links back to the pull request, then runs the unit tests and
+# web-ext lint on the result.
 #
 # Pushes made with GITHUB_TOKEN don't start new workflow runs, so after pushing a version update
-# this job reports its result on the new commit as a status with the job's own name. Requiring
-# "Version and changelog" in branch protection then works whether or not a push happened.
+# each job reports its result on the new commit as a status with the job's own name. Requiring
+# these checks in branch protection then works whether or not a push happened.
 
 on:
   pull_request:
@@ -24,6 +25,8 @@ jobs:
   requirements:
     name: Version and changelog
     runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.push.outputs.sha }}
     env:
       PR_NUMBER: ${{ github.event.pull_request.number }}
       PR_URL: ${{ github.event.pull_request.html_url }}
@@ -88,4 +91,71 @@ jobs:
             -f state="$STATE" \
             -f context="Version and changelog" \
             -f description="Changelog and version check: $STATE" \
+            -f target_url="$RUN_URL"
+
+  tests:
+    name: Unit tests
+    needs: requirements
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.requirements.outputs.sha || github.event.pull_request.head.sha }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm test
+
+      - name: Report the result on the updated commit
+        if: always() && needs.requirements.outputs.sha
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ needs.requirements.outputs.sha }}
+          STATE: ${{ job.status == 'success' && 'success' || 'failure' }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh api --silent "repos/$GITHUB_REPOSITORY/statuses/$SHA" \
+            -f state="$STATE" \
+            -f context="Unit tests" \
+            -f description="npm test: $STATE" \
+            -f target_url="$RUN_URL"
+
+  lint:
+    name: Lint
+    needs: requirements
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.requirements.outputs.sha || github.event.pull_request.head.sha }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run web-ext lint
+        run: |
+          npx --yes web-ext@10 lint --output json > "$RUNNER_TEMP/lint.json" || true
+          # Every error and warning fails, except the one expected warning: Firefox doesn't support
+          # background.service_worker, which manifest.json declares for Chrome.
+          problems='[.errors[], (.warnings[] | select(.code != "BACKGROUND_SERVICE_WORKER_IGNORED"))]'
+          jq -r "$problems[] | \"::error file=\\(.file // \"\")::\\(.code): \\(.message)\"" "$RUNNER_TEMP/lint.json"
+          jq -e "$problems | length == 0" "$RUNNER_TEMP/lint.json" > /dev/null
+
+      - name: Report the result on the updated commit
+        if: always() && needs.requirements.outputs.sha
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ needs.requirements.outputs.sha }}
+          STATE: ${{ job.status == 'success' && 'success' || 'failure' }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh api --silent "repos/$GITHUB_REPOSITORY/statuses/$SHA" \
+            -f state="$STATE" \
+            -f context="Lint" \
+            -f description="web-ext lint: $STATE" \
             -f target_url="$RUN_URL"
