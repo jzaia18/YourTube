@@ -48,6 +48,10 @@ _Avoid_: Video page, player page
 YouTube's button for asking its AI about the video being watched, labelled "Ask". It sits with the buttons below the player and among the fullscreen player's quick actions.
 _Avoid_: Ask AI button, Gemini button
 
+**Store shelf**:
+The row of products a channel sells, which YouTube shows below the video on a watch page. YouTube labels it with the channel's store name. Only YouTube's desktop site shows it.
+_Avoid_: Purchase section, merch shelf, product shelf
+
 ### Shorts
 
 **Short**:
