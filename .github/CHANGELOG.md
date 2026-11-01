@@ -2,6 +2,9 @@
 
 ### New features since last release
 
+- The shelf of products a channel sells can be hidden from below its videos.
+  [(#9)](https://github.com/jzaia18/YourTube/pull/9)
+
 - The YouTube logo can lead to Subscriptions, Watch later, or any YouTube page instead of the homepage.
 
 - YouTube's AI "Ask" button can be hidden on videos.
