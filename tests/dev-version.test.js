@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { isRelease, nextDevVersion, writeVersion } from "../.github/scripts/dev-version.js";
+import { isRelease, nextDevVersion } from "../.github/scripts/dev-version.js";
 
 test("a manifest from before version_name counts as dev0 of its version", () => {
   assert.deepEqual(nextDevVersion({ version: "0.1.0" }), {
@@ -38,20 +38,4 @@ test("a pull request that sets both fields to a new X.Y.Z is a release", () => {
 test("a pull request that keeps main's release version is not a release", () => {
   const main = { version: "0.1.0", version_name: "0.1.0" };
   assert.ok(!isRelease(main, { version: "0.1.0", version_name: "0.1.0" }));
-});
-
-test("writeVersion adds version_name after version, keeping the rest of the text", () => {
-  const before = '{\n  "name": "YourTube",\n  "version": "0.1.0",\n  "x": [1, 2]\n}\n';
-  assert.equal(
-    writeVersion(before, { version: "0.1.0.1", version_name: "0.1.0-dev1" }),
-    '{\n  "name": "YourTube",\n  "version": "0.1.0.1",\n  "version_name": "0.1.0-dev1",\n  "x": [1, 2]\n}\n',
-  );
-});
-
-test("writeVersion replaces an existing version_name", () => {
-  const before = '{\n  "version": "0.1.0.1",\n  "version_name": "0.1.0-dev1",\n  "x": 1\n}\n';
-  assert.equal(
-    writeVersion(before, { version: "0.1.0.2", version_name: "0.1.0-dev2" }),
-    '{\n  "version": "0.1.0.2",\n  "version_name": "0.1.0-dev2",\n  "x": 1\n}\n',
-  );
 });

@@ -43,7 +43,7 @@ Settings flow through `browser.storage.sync`: defaults in `src/shared/settings.j
 - Minimum versions are Chrome 152 and Firefox 147 (`minimum_chrome_version`, `strict_min_version`). Chrome 152 completes `browser.*` namespace and promise support; Firefox 147 is the first release with the Navigation API (`content.js` tracks the current page with it). Raise them only when a needed API requires it.
 - `browser_specific_settings.gecko.id` is permanent once the extension is signed by Mozilla, and `storage.sync` depends on it; keep it unchanged.
 - Deliver changes as pull requests from a branch off `main`; the owner reviews and merges. Keep each PR small and focused: one feature or fix, small enough to review in one sitting. Split unrelated changes into separate PRs.
-- Every PR adds an entry to `.github/CHANGELOG.md` linking back to it. A workflow sets the dev version in `manifest.json` on the PR branch, so pull before pushing more commits. Versioning and releases: `.github/CONTRIBUTING.md`.
+- Every PR adds an entry to `.github/CHANGELOG.md` linking back to it and bumps the dev version in `manifest.json` (scheme in `.github/CONTRIBUTING.md`); CI checks both.
 - Log with a `[YourTube]` prefix.
 - Request the narrowest `permissions` / `host_permissions` that work; every addition triggers a new permission warning for users.
 
@@ -53,7 +53,7 @@ Pure logic lives in `src/shared/` and is unit-tested in `tests/` with Node's bui
 
 - **Sites:** for m.youtube.com, use a phone preset in Chrome's device toolbar or Firefox's Responsive Design Mode (YouTube redirects phone user agents from www to m). For embedded players, open any page that embeds `https://www.youtube-nocookie.com/embed/<id>` in an iframe.
 
-- **Lint:** `npx web-ext lint` (Mozilla's tool) validates the manifest and code against Firefox's rules. The one expected warning is `MANIFEST_FIELD_UNSUPPORTED` for `/background/service_worker`; anything else is a real problem.
+- **Lint:** `npx web-ext lint` (Mozilla's tool) validates the manifest and code against Firefox's rules. The one expected warning is `BACKGROUND_SERVICE_WORKER_IGNORED` (`MANIFEST_FIELD_UNSUPPORTED` in older web-ext versions) for `/background/service_worker`; anything else is a real problem. Every PR push runs `npm test` and this lint in CI.
 - **Chrome:** load unpacked at `chrome://extensions` (Developer mode → Load unpacked → repo root); after changes, click the reload icon on the extension card and refresh the YouTube tab. Background logs via the "service worker" link on the card; popup logs by right-clicking the popup → Inspect. Logged-out testing: an Incognito window, after enabling "Allow in Incognito" on the extension's Details page.
 - **Firefox:** `npx web-ext run` launches a fresh Firefox profile with the extension loaded and reloads it on file changes. That profile is logged out; use `--firefox-profile` to test logged in. Alternatively, `about:debugging#/runtime/this-firefox` → Load Temporary Add-on → `manifest.json` (removed on browser restart). Background and popup logs via the extension's Inspect button on that page.
 

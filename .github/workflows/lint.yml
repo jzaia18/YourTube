@@ -1,0 +1,27 @@
+name: Lint
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run web-ext lint
+        run: |
+          npx --yes web-ext@10 lint --output json > "$RUNNER_TEMP/lint.json" || true
+          # Every error and warning fails, except the one expected warning: Firefox doesn't support
+          # background.service_worker, which manifest.json declares for Chrome.
+          problems='[.errors[], (.warnings[] | select(.code != "BACKGROUND_SERVICE_WORKER_IGNORED"))]'
+          jq -r "$problems[] | \"::error file=\(.file // \"\")::\(.code): \(.message)\"" "$RUNNER_TEMP/lint.json"
+          jq -e "$problems | length == 0" "$RUNNER_TEMP/lint.json" > /dev/null

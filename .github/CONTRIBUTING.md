@@ -15,10 +15,10 @@ pull requests.
   the development release at the top: one or two sentences describing the visible change, ending
   with a link back to the pull request, e.g. `[(#12)](https://github.com/jzaia18/YourTube/pull/12)`.
   Add your name to that release's contributors.
-- **Version.** The "Pull request requirements" workflow sets the version in `manifest.json` on
-  your branch whenever the pull request is opened or updated, so pull before pushing more commits.
-  Pull requests from forks can't be updated automatically: set the version the failing check
-  names by hand. The same check fails until the changelog links to the pull request.
+- **Version.** Set `version` and `version_name` in `manifest.json` to the next dev build after
+  `main`'s (see [Versioning](#versioning)). If another pull request merges first, merge `main`
+  into your branch and take the following number.
+- **Checks.** All CI checks must pass before a pull request can merge.
 
 ## Versioning
 

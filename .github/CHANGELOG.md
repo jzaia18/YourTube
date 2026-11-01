@@ -20,8 +20,11 @@
 
 ### Internal changes ⚙️
 
-- Every pull request now gets the next development version in `manifest.json` automatically, and must add a changelog entry linking back to it.
+- Every pull request must bump the development version in `manifest.json` and add a changelog entry linking back to it.
   [(#3)](https://github.com/jzaia18/YourTube/pull/3)
+
+- Every push to a pull request runs separate checks for the version, the changelog, the unit tests, and `web-ext lint`.
+  [(#7)](https://github.com/jzaia18/YourTube/pull/7)
 
 ### Documentation 📝
 
