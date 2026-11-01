@@ -51,7 +51,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -am "Update version to $VERSION_NAME"
+          # [skip ci] stops GitHub from queuing a run for this push that would wait for approval.
+          git commit -am "Update version to $VERSION_NAME [skip ci]"
           git push origin "HEAD:refs/heads/$HEAD_REF"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
@@ -81,8 +82,8 @@ jobs:
           STATE: ${{ steps.check.outcome == 'success' && 'success' || 'failure' }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          gh api "repos/$GITHUB_REPOSITORY/statuses/$SHA" \
+          gh api --silent "repos/$GITHUB_REPOSITORY/statuses/$SHA" \
             -f state="$STATE" \
             -f context="Version and changelog" \
-            -f description="Dev version set; changelog check: $STATE" \
+            -f description="Changelog and version check: $STATE" \
             -f target_url="$RUN_URL"

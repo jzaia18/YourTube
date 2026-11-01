@@ -10,13 +10,21 @@
 
 ### Internal changes ⚙️
 
+- Every pull request now gets the next development version in `manifest.json` automatically, and must add a changelog entry linking back to it.
+  [(#3)](https://github.com/jzaia18/YourTube/pull/3)
+
 ### Documentation 📝
+
+- Added this changelog, pull request and issue templates, and a contributing guide.
+  [(#3)](https://github.com/jzaia18/YourTube/pull/3)
 
 ### Bug fixes 🐛
 
 ### Contributors ✍️
 
 This release contains contributions from (in alphabetical order):
+
+jzaia-agent
 
 ---
 
