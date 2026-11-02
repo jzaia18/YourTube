@@ -4,26 +4,10 @@
 // scoped under, and hands the settings to every feature with JS of its own (FEATURES, each
 // defined by a script listed before this one in manifest.json, with an idempotent apply(settings)).
 (() => {
-  // Keep in sync with src/shared/settings.js, which explains each field (checked by
-  // tests/content-copies.test.js).
-  const SETTINGS = {
-    enabled: { default: true },
-    logoDestination: { default: "homepage", off: "homepage" },
-    logoCustomPath: { default: "", off: "" },
-    hidePageAds: { default: true, off: false, css: "attribute" },
-    hideAskButton: { default: true, off: false, css: "attribute" },
-    hideJoinButton: { default: false, off: false, css: "attribute" },
-    hideStoreShelf: { default: false, off: false, css: "attribute" },
-    hideShortsOnHomepage: { default: false, off: false, css: "attribute" },
-    hideShortsInSubscriptions: { default: false, off: false, css: "attribute" },
-    hideShortsInSearch: { default: false, off: false, css: "attribute" },
-    hideGuideExplore: { default: false, off: false, css: "attribute" },
-    hideGuideMoreFromYouTube: { default: false, off: false, css: "attribute" },
-  };
+  const { SETTINGS, DEFAULT_SETTINGS } = yourtubeSettings; // src/shared/settings.js, listed before this script
   const FEATURES = [logoLink];
 
   const entries = Object.entries(SETTINGS);
-  const DEFAULTS = Object.fromEntries(entries.map(([key, setting]) => [key, setting.default]));
   // What features see while the Master switch is off: every setting at its off value, plain YouTube.
   const OFF = { ...Object.fromEntries(entries.map(([key, setting]) => [key, setting.off])), enabled: false };
   // Each CSS-only feature's setting and its attribute: hidePageAds -> data-yourtube-hide-page-ads.
@@ -31,7 +15,7 @@
     .filter(([, setting]) => setting.css === "attribute")
     .map(([key]) => [key, "data-yourtube-" + key.replace(/[A-Z]/g, (letter) => "-" + letter.toLowerCase())]);
 
-  let stored = { ...DEFAULTS };
+  let stored = { ...DEFAULT_SETTINGS };
   function applyAll() {
     const settings = stored.enabled ? stored : OFF;
     for (const [key, attribute] of ATTRIBUTES) {
@@ -40,7 +24,7 @@
     for (const feature of FEATURES) feature.apply(settings);
   }
 
-  browser.storage.sync.get(DEFAULTS).then((values) => {
+  browser.storage.sync.get(DEFAULT_SETTINGS).then((values) => {
     stored = values;
     applyAll();
   });

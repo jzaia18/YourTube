@@ -36,6 +36,7 @@
 ### Internal changes ⚙️
 
 - Every setting is described once, with its default and its off value, and CSS-only features need no script of their own.
+  Content scripts now load the shared settings and logo destinations directly instead of keeping copies.
   [(#19)](https://github.com/jzaia18/YourTube/pull/19)
 
 - Every pull request must bump the development version in `manifest.json` and add a changelog entry linking back to it.

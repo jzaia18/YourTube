@@ -28,6 +28,8 @@
     {
       "matches": ["https://www.youtube.com/*", "https://m.youtube.com/*"],
       "js": [
+        "src/shared/settings.js",
+        "src/shared/logo-link.js",
         "src/content/logo-link.js",
         "src/content/content.js"
       ],
