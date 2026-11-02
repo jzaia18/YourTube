@@ -40,8 +40,8 @@ const logoLink = (() => {
   const copies = new Map(); // logo host element -> its copy
   const artworkSignatures = new WeakMap(); // copy -> what its artwork was built from
 
+  // While the Master switch is off, content.js passes logoDestination "homepage": no target.
   function resolveTarget(settings) {
-    if (!settings.enabled) return null;
     if (settings.logoDestination !== "custom") {
       const destination = DESTINATIONS[settings.logoDestination];
       return destination && { href: destination.path, label: destination.label };

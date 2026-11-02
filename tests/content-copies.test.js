@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { DEFAULT_SETTINGS } from "../src/shared/settings.js";
+import { SETTINGS } from "../src/shared/settings.js";
 import { LOGO_DESTINATIONS } from "../src/shared/logo-link.js";
 
 // Content scripts can't import, so they keep hand-made copies of values from src/shared/.
@@ -13,8 +13,8 @@ function readCopy(file, name) {
   return Function(`return (${match[1]});`)();
 }
 
-test("content.js has the same default settings as src/shared/settings.js", () => {
-  assert.deepEqual(readCopy("src/content/content.js", "DEFAULT_SETTINGS"), DEFAULT_SETTINGS);
+test("content.js has the same settings table as src/shared/settings.js", () => {
+  assert.deepEqual(readCopy("src/content/content.js", "SETTINGS"), SETTINGS);
 });
 
 test("content/logo-link.js has the same logo destinations as the popup", () => {

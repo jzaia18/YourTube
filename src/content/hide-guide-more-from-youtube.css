@@ -4,7 +4,7 @@
    YouTube's other products. Any one is enough, as entries vary by country (YouTube TV is
    US-only). Sections with a collapsible header (Subscriptions, You) are skipped. See issue #1
    for a sturdier way. */
-html[data-yourtube-hide-guide-more-from-youtube] ytd-guide-renderer ytd-guide-section-renderer:not(:has(ytd-guide-collapsible-section-entry-renderer)):has(
+html[data-yourtube-hide-guide-more-from-you-tube] ytd-guide-renderer ytd-guide-section-renderer:not(:has(ytd-guide-collapsible-section-entry-renderer)):has(
     a[href="/premium"],
     a[href^="https://music.youtube.com"],
     a[href^="https://www.youtubekids.com"],
