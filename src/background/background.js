@@ -1,4 +1,6 @@
-import { DEFAULT_SETTINGS } from "../shared/settings.js";
+import "../shared/settings.js";
+
+const { DEFAULT_SETTINGS } = globalThis.yourtubeSettings;
 
 // Fires on first install, on every extension update, and on Chrome updates.
 // Fill in any settings keys that don't exist yet without clobbering the user's choices.

@@ -1,8 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { DEFAULT_SETTINGS } from "../src/shared/settings.js";
+import "../src/shared/settings.js";
 
+const { DEFAULT_SETTINGS } = globalThis.yourtubeSettings;
 const html = readFileSync(new URL("../src/popup/popup.html", import.meta.url), "utf8");
 
 // popup.js saves each checkbox's state under the setting its data-setting attribute names,

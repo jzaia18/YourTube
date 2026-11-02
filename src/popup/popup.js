@@ -1,5 +1,8 @@
-import { DEFAULT_SETTINGS } from "../shared/settings.js";
-import { LOGO_DESTINATIONS, normalizeCustomPath } from "../shared/logo-link.js";
+import "../shared/settings.js";
+import "../shared/logo-link.js";
+
+const { DEFAULT_SETTINGS } = globalThis.yourtubeSettings;
+const { LOGO_DESTINATIONS, normalizeCustomPath } = globalThis.yourtubeLogoLink;
 
 // The popup is a fresh page each time it opens and is destroyed when it closes,
 // so all state lives in browser.storage, never in variables here.
@@ -11,7 +14,7 @@ const customPath = document.getElementById("logo-custom-path");
 const customError = document.getElementById("logo-custom-error");
 const customHint = document.getElementById("logo-custom-hint");
 
-for (const [value, label] of Object.entries(LOGO_DESTINATIONS)) {
+for (const [value, { label }] of Object.entries(LOGO_DESTINATIONS)) {
   destination.add(new Option(label, value));
 }
 

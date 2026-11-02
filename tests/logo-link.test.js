@@ -1,6 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { normalizeCustomPath } from "../src/shared/logo-link.js";
+import "../src/shared/logo-link.js";
+
+const { normalizeCustomPath } = globalThis.yourtubeLogoLink;
 
 const ok = (path) => ({ ok: true, path });
 

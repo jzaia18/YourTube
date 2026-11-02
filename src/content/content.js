@@ -1,16 +1,31 @@
 // Runs in every top-level page on the YouTube sites listed in manifest.json, in an isolated
-// JS world: it shares the page's DOM but not its JS globals. The feature scripts listed before this one
-// in manifest.json each define a top-level object with apply(settings); this script loads the
-// settings and hands them to every feature, now and whenever they change.
+// JS world: it shares the page's DOM but not its JS globals. It loads the settings and applies
+// them, now and whenever they change: it sets the attribute each CSS-only feature's CSS is
+// scoped under, and hands the settings to every feature with JS of its own (FEATURES, each
+// defined by a script listed before this one in manifest.json, with an idempotent apply(settings)).
 (() => {
-  const DEFAULT_SETTINGS = { enabled: true, logoDestination: "homepage", logoCustomPath: "", hidePageAds: true, hideAskButton: true, hideJoinButton: false, hideStoreShelf: false, hideShortsOnHomepage: false, hideShortsInSubscriptions: false, hideShortsInSearch: false, hideGuideExplore: false, hideGuideMoreFromYouTube: false }; // keep in sync with src/shared/settings.js (checked by tests/content-copies.test.js)
-  const FEATURES = [logoLink, hidePageAds, hideAskButton, hideJoinButton, hideStoreShelf, hideShorts, hideGuideExplore, hideGuideMoreFromYouTube];
+  const { SETTINGS, DEFAULT_SETTINGS } = yourtubeSettings; // src/shared/settings.js, listed before this script
+  const FEATURES = [logoLink];
 
-  let settings = { ...DEFAULT_SETTINGS };
-  const applyAll = () => FEATURES.forEach((feature) => feature.apply(settings));
+  const entries = Object.entries(SETTINGS);
+  // What features see while the Master switch is off: every setting at its off value, plain YouTube.
+  const OFF = { ...Object.fromEntries(entries.map(([key, setting]) => [key, setting.off])), enabled: false };
+  // Each CSS-only feature's setting and its attribute: hidePageAds -> data-yourtube-hide-page-ads.
+  const ATTRIBUTES = entries
+    .filter(([, setting]) => setting.css === "attribute")
+    .map(([key]) => [key, "data-yourtube-" + key.replace(/[A-Z]/g, (letter) => "-" + letter.toLowerCase())]);
 
-  browser.storage.sync.get(DEFAULT_SETTINGS).then((stored) => {
-    settings = stored;
+  let stored = { ...DEFAULT_SETTINGS };
+  function applyAll() {
+    const settings = stored.enabled ? stored : OFF;
+    for (const [key, attribute] of ATTRIBUTES) {
+      document.documentElement.toggleAttribute(attribute, settings[key] === true);
+    }
+    for (const feature of FEATURES) feature.apply(settings);
+  }
+
+  browser.storage.sync.get(DEFAULT_SETTINGS).then((values) => {
+    stored = values;
     applyAll();
   });
 
@@ -18,7 +33,7 @@
   browser.storage.onChanged.addListener((changes, area) => {
     if (area !== "sync") return;
     for (const [key, { newValue }] of Object.entries(changes)) {
-      if (key in DEFAULT_SETTINGS) settings[key] = newValue ?? DEFAULT_SETTINGS[key];
+      if (key in SETTINGS) stored[key] = newValue ?? SETTINGS[key].default;
     }
     applyAll();
   });

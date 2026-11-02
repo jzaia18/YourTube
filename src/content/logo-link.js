@@ -5,11 +5,7 @@
 const logoLink = (() => {
   const ACTIVE_ATTR = "data-yourtube-logo-link";
   const COPY_CLASS = "yourtube-logo-link";
-  // Keep in sync with LOGO_DESTINATIONS in src/shared/logo-link.js (checked by tests/content-copies.test.js).
-  const DESTINATIONS = {
-    subscriptions: { path: "/feed/subscriptions", label: "Subscriptions" },
-    watchLater: { path: "/playlist?list=WL", label: "Watch later" },
-  };
+  const { LOGO_DESTINATIONS } = yourtubeLogoLink; // src/shared/logo-link.js, listed before this script
   // Where each YouTube site renders its logo. Per site, within the `host` element:
   // `original` is what gets hidden (mirrored in logo-link.css) with the copy placed right
   // after it, null meaning the host itself; `box` is the element whose size the copy matches.
@@ -40,11 +36,11 @@ const logoLink = (() => {
   const copies = new Map(); // logo host element -> its copy
   const artworkSignatures = new WeakMap(); // copy -> what its artwork was built from
 
+  // While the Master switch is off, content.js passes logoDestination "homepage": no target.
   function resolveTarget(settings) {
-    if (!settings.enabled) return null;
     if (settings.logoDestination !== "custom") {
-      const destination = DESTINATIONS[settings.logoDestination];
-      return destination && { href: destination.path, label: destination.label };
+      const destination = LOGO_DESTINATIONS[settings.logoDestination];
+      return destination?.path ? { href: destination.path, label: destination.label } : null;
     }
     // The popup already normalized this; only confirm it stays on this site.
     const path = settings.logoCustomPath;
