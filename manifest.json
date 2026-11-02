@@ -27,8 +27,8 @@
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*", "https://m.youtube.com/*"],
-      "js": ["src/content/css-toggle.js", "src/content/logo-link.js", "src/content/hide-page-ads.js", "src/content/hide-ask-button.js", "src/content/hide-store-shelf.js", "src/content/hide-shorts-on-homepage.js", "src/content/hide-shorts-in-subscriptions.js", "src/content/hide-shorts-in-search.js", "src/content/hide-guide-explore.js", "src/content/hide-guide-more-from-youtube.js", "src/content/content.js"],
-      "css": ["src/content/logo-link.css", "src/content/hide-page-ads.css", "src/content/hide-ask-button.css", "src/content/hide-store-shelf.css", "src/content/hide-shorts-on-homepage.css", "src/content/hide-shorts-in-subscriptions.css", "src/content/hide-shorts-in-search.css", "src/content/hide-guide-explore.css", "src/content/hide-guide-more-from-youtube.css"],
+      "js": ["src/content/css-toggle.js", "src/content/logo-link.js", "src/content/hide-page-ads.js", "src/content/hide-ask-button.js", "src/content/hide-store-shelf.js", "src/content/hide-shorts.js", "src/content/hide-guide-explore.js", "src/content/hide-guide-more-from-youtube.js", "src/content/content.js"],
+      "css": ["src/content/logo-link.css", "src/content/hide-page-ads.css", "src/content/hide-ask-button.css", "src/content/hide-store-shelf.css", "src/content/hide-shorts.css", "src/content/hide-guide-explore.css", "src/content/hide-guide-more-from-youtube.css"],
       "run_at": "document_idle"
     }
   ],

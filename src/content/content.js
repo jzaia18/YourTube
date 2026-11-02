@@ -4,7 +4,7 @@
 // settings and hands them to every feature, now and whenever they change.
 (() => {
   const DEFAULT_SETTINGS = { enabled: true, logoDestination: "homepage", logoCustomPath: "", hidePageAds: true, hideAskButton: true, hideStoreShelf: false, hideShortsOnHomepage: false, hideShortsInSubscriptions: false, hideShortsInSearch: false, hideGuideExplore: false, hideGuideMoreFromYouTube: false }; // keep in sync with src/shared/settings.js (checked by tests/content-copies.test.js)
-  const FEATURES = [logoLink, hidePageAds, hideAskButton, hideStoreShelf, hideShortsOnHomepage, hideShortsInSubscriptions, hideShortsInSearch, hideGuideExplore, hideGuideMoreFromYouTube];
+  const FEATURES = [logoLink, hidePageAds, hideAskButton, hideStoreShelf, hideShorts, hideGuideExplore, hideGuideMoreFromYouTube];
 
   let settings = { ...DEFAULT_SETTINGS };
   const applyAll = () => FEATURES.forEach((feature) => feature.apply(settings));
