@@ -1,0 +1,7 @@
+/* Hide Join button: on desktop's watch page (ytd-watch-flexy), the Join button sits in
+   #sponsor-button, beside the channel's name and Subscribe button. For members, YouTube puts its
+   perks button in the same slot, so that is hidden too. Channel pages aren't ytd-watch-flexy, so
+   their Join button stays. */
+html[data-yourtube-hide-join-button] ytd-watch-flexy #sponsor-button {
+  display: none !important;
+}

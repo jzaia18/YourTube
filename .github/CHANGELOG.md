@@ -2,6 +2,10 @@
 
 ### New features since last release
 
+- The button for joining a channel's paid membership can be hidden from below its videos.
+  The popup groups this with hiding the "Ask" button, under "Below videos".
+  [(#16)](https://github.com/jzaia18/YourTube/pull/16)
+
 - Shorts can also be hidden on the homepage and in search results.
   The popup groups all three Shorts settings under "Shorts", with a button to select or deselect them all.
   [(#14)](https://github.com/jzaia18/YourTube/pull/14)

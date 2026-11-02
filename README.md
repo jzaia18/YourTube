@@ -19,6 +19,7 @@ Configure everything from the YourTube button in the browser toolbar.
 - **Logo link:** choose where the YouTube logo takes you: the homepage (YouTube's default), Subscriptions, Watch later, or any YouTube page you like.
 - **Hide ads around videos:** remove the ads YouTube places beside, between, and above videos. Ads inside the player still play.
 - **Hide the Ask button:** remove YouTube's AI "Ask" button from videos.
+- **Hide the Join button:** remove the button for joining a channel's paid membership from below its videos. It stays on the channel's page.
 - **Hide channel stores below videos:** remove the shelf of products a channel sells from below its videos.
 - **Hide Shorts:** on the homepage, in Subscriptions, and/or in search results, each separately configurable -- it's your choice.
 - **Tidy the sidebar (Guide):** hide its Explore and More from YouTube sections, separately.
