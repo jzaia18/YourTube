@@ -52,6 +52,16 @@ _Avoid_: Ask AI button, Gemini button
 The row of products a channel sells, which YouTube shows below the video on a watch page. YouTube labels it with the channel's store name. Only YouTube's desktop site shows it.
 _Avoid_: Purchase section, merch shelf, product shelf
 
+### Ads
+
+**Page ad**:
+A paid advertisement YouTube places on the page outside the player: beside, between, or above videos, in feeds, search results, and the watch page. YouTube's promotions for its own products (such as Premium) are not page ads, nor are sponsor segments inside videos or a channel's Store shelf.
+_Avoid_: Static ad, display ad, banner ad
+
+**Video ad**:
+An advertisement that plays or appears inside the player, before, during, or over a video.
+_Avoid_: Pre-roll, in-stream ad
+
 ### Shorts
 
 **Short**:

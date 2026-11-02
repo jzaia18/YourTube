@@ -1,0 +1,19 @@
+/* Hide page ads: paid ads outside the player. Nothing here matches inside the player, whose ads
+   (video ads) are out of scope. YouTube still loads every ad; it just isn't shown. */
+
+/* www.youtube.com: each ad is an ytd-ad-slot-renderer, wherever it appears (feeds, search, the
+   watch page's recommendations). In the home grid it fills a ytd-rich-item-renderer, hidden whole
+   so the grid closes the gap. The home page's top banner is #masthead-ad; on the watch page, ads
+   above the recommendations sit in #player-ads and in the ads engagement panel. */
+html[data-yourtube-hide-page-ads] ytd-ad-slot-renderer,
+html[data-yourtube-hide-page-ads] ytd-rich-item-renderer:has(ytd-ad-slot-renderer),
+html[data-yourtube-hide-page-ads] #masthead-ad,
+html[data-yourtube-hide-page-ads] ytd-watch-flexy #player-ads,
+html[data-yourtube-hide-page-ads] ytd-engagement-panel-section-list-renderer[target-id="engagement-panel-ads"],
+/* m.youtube.com: each ad is an ad-slot-renderer (no ytm- prefix), filling a ytm-rich-item-renderer
+   in grid feeds; on the watch page, the ad below the player is a ytm-companion-ad-renderer. */
+html[data-yourtube-hide-page-ads] ad-slot-renderer,
+html[data-yourtube-hide-page-ads] ytm-rich-item-renderer:has(ad-slot-renderer),
+html[data-yourtube-hide-page-ads] ytm-companion-ad-renderer {
+  display: none !important;
+}
