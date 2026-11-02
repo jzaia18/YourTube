@@ -46,16 +46,28 @@
     </section>
 
     <section>
-      <label class="toggle" title="Hides YouTube's AI “Ask” button below videos and in the fullscreen player.">
-        <input type="checkbox" data-setting="hideAskButton" />
-        Hide the “Ask” button
+      <div class="section-header">
+        <h2>Shorts</h2>
+        <button type="button" class="select-all" title="Turns on every setting in this section, or turns them all off once they're all on."></button>
+      </div>
+      <label class="toggle" title="Hides Shorts from the homepage, leaving only regular videos.">
+        <input type="checkbox" data-setting="hideShortsOnHomepage" />
+        Hide on the homepage
+      </label>
+      <label class="toggle" title="Hides Shorts from the Subscriptions page, leaving only regular videos.">
+        <input type="checkbox" data-setting="hideShortsInSubscriptions" />
+        Hide in Subscriptions
+      </label>
+      <label class="toggle" title="Hides Shorts from search results, leaving only regular videos, channels, and playlists.">
+        <input type="checkbox" data-setting="hideShortsInSearch" />
+        Hide in search results
       </label>
     </section>
 
     <section>
-      <label class="toggle" title="Hides Shorts from the Subscriptions page, leaving only regular videos.">
-        <input type="checkbox" data-setting="hideShortsInSubscriptions" />
-        Hide Shorts in Subscriptions
+      <label class="toggle" title="Hides YouTube's AI “Ask” button below videos and in the fullscreen player.">
+        <input type="checkbox" data-setting="hideAskButton" />
+        Hide the “Ask” button
       </label>
     </section>
 

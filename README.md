@@ -20,7 +20,7 @@ Configure everything from the YourTube button in the browser toolbar.
 - **Hide ads around videos:** remove the ads YouTube places beside, between, and above videos. Ads inside the player still play.
 - **Hide the Ask button:** remove YouTube's AI "Ask" button from videos.
 - **Hide channel stores below videos:** remove the shelf of products a channel sells from below its videos.
-- **Hide Shorts in Subscriptions:** see only regular videos from the channels you subscribe to.
+- **Hide Shorts:** on the homepage, in Subscriptions, and/or in search results, each separately configurable -- it's your choice.
 - **Tidy the sidebar (Guide):** hide its Explore and More from YouTube sections, separately.
 
 ## Install (development)

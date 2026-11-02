@@ -48,6 +48,34 @@ section > h2 {
   font-weight: 500;
 }
 
+/* A section heading with a button at its right end, such as "Select all". */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.section-header > h2 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 500;
+}
+
+.select-all {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 12px;
+  color: light-dark(#5b3fd9, #a594f9);
+  cursor: pointer;
+}
+
+.select-all:hover {
+  text-decoration: underline;
+}
+
 .toggle + .toggle {
   margin-top: 4px;
 }

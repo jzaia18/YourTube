@@ -7,7 +7,9 @@ export const DEFAULT_SETTINGS = {
   hidePageAds: true, // hide ads outside the player (Page ads), on every page
   hideAskButton: true, // hide YouTube's AI "Ask" button on the watch page
   hideStoreShelf: false, // hide the Store shelf below the video on the watch page
+  hideShortsOnHomepage: false, // hide Shorts on the homepage
   hideShortsInSubscriptions: false, // hide Shorts on the Subscriptions page
+  hideShortsInSearch: false, // hide Shorts on the search results page
   hideGuideExplore: false, // hide the Guide's Explore section
   hideGuideMoreFromYouTube: false, // hide the Guide's More from YouTube section
 };
