@@ -14,6 +14,20 @@ _Avoid_: Mod, tweak, rewrite
 The single setting that turns every feature off at once, showing plain YouTube.
 _Avoid_: Global toggle, kill switch
 
+### Pages
+
+**Homepage**:
+YouTube's main feed of recommended videos (youtube.com/). Logged out, it may show only a prompt to search.
+_Avoid_: Home page, home feed, front page
+
+**Subscriptions page**:
+The feed of recent uploads from the channels the user subscribes to (youtube.com/feed/subscriptions). Logged out, it shows only a sign-in prompt.
+_Avoid_: Subscriptions feed, subs page
+
+**Search results page**:
+The list of videos, channels, and shelves YouTube shows for a search (youtube.com/results).
+_Avoid_: Search page
+
 ### Logo link
 
 **Logo link**:
@@ -71,7 +85,3 @@ _Avoid_: Reel, short video
 **Shorts shelf**:
 A horizontal row of Shorts that YouTube inserts into a feed, separate from its regular videos.
 _Avoid_: Shorts carousel, Shorts row
-
-**Subscriptions page**:
-The feed of recent uploads from the channels the user subscribes to (youtube.com/feed/subscriptions). Logged out, it shows only a sign-in prompt.
-_Avoid_: Subscriptions feed, subs page

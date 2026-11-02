@@ -2,6 +2,10 @@
 
 ### New features since last release
 
+- Shorts can also be hidden on the homepage and in search results.
+  The popup groups all three Shorts settings under "Shorts", with a button to select or deselect them all.
+  [(#14)](https://github.com/jzaia18/YourTube/pull/14)
+
 - Ads YouTube places beside, between, and above videos can be hidden; ads inside the player are untouched.
   The popup groups this with hiding channel stores, under "Ads and shopping".
   [(#12)](https://github.com/jzaia18/YourTube/pull/12)

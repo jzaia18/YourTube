@@ -15,6 +15,13 @@ for (const [value, label] of Object.entries(LOGO_DESTINATIONS)) {
   destination.add(new Option(label, value));
 }
 
+// A section's "Select all" button turns on every toggle in its section, or, once all are on,
+// turns them all off; its label says which it will do.
+const selectAllButtons = [...document.querySelectorAll("button.select-all")].map((button) => ({
+  button,
+  boxes: [...button.closest("section").querySelectorAll("input[type=checkbox][data-setting]")],
+}));
+
 const settings = await browser.storage.sync.get(DEFAULT_SETTINGS);
 // Each checkbox with a data-setting attribute stores the boolean setting it names.
 const checkboxes = document.querySelectorAll("input[type=checkbox][data-setting]");
@@ -26,6 +33,9 @@ render();
 
 function render() {
   offNote.hidden = enabled.checked;
+  for (const { button, boxes } of selectAllButtons) {
+    button.textContent = boxes.every((box) => box.checked) ? "Deselect all" : "Select all";
+  }
   custom.hidden = destination.value !== "custom";
 
   const result = normalizeCustomPath(customPath.value);
@@ -44,6 +54,16 @@ for (const checkbox of checkboxes) {
   checkbox.addEventListener("change", () => {
     render();
     browser.storage.sync.set({ [checkbox.dataset.setting]: checkbox.checked });
+  });
+}
+
+for (const { button, boxes } of selectAllButtons) {
+  button.addEventListener("click", () => {
+    const checked = !boxes.every((box) => box.checked);
+    for (const box of boxes) box.checked = checked;
+    render();
+    // One write for the whole section, since storage.sync limits writes per minute.
+    browser.storage.sync.set(Object.fromEntries(boxes.map((box) => [box.dataset.setting, checked])));
   });
 }
 
