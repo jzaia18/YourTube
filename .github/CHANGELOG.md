@@ -2,6 +2,10 @@
 
 ### New features since last release
 
+- Ads YouTube places beside, between, and above videos can be hidden; ads inside the player are untouched.
+  The popup groups this with hiding channel stores, under "Ads and shopping".
+  [(#12)](https://github.com/jzaia18/YourTube/pull/12)
+
 - The shelf of products a channel sells can be hidden from below its videos.
   [(#9)](https://github.com/jzaia18/YourTube/pull/9)
 

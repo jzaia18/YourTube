@@ -4,6 +4,7 @@ export const DEFAULT_SETTINGS = {
   enabled: true, // master switch
   logoDestination: "homepage", // a key of LOGO_DESTINATIONS in logo-link.js
   logoCustomPath: "", // normalized path, used when logoDestination is "custom"
+  hidePageAds: true, // hide ads outside the player (Page ads), on every page
   hideAskButton: true, // hide YouTube's AI "Ask" button on the watch page
   hideStoreShelf: false, // hide the Store shelf below the video on the watch page
   hideShortsInSubscriptions: false, // hide Shorts on the Subscriptions page
