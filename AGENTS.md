@@ -22,7 +22,7 @@ Each directory under `src/` runs in a different extension context with different
 - `src/popup/` — toolbar popup page (ES module). Recreated every time it opens.
 - `src/shared/` — shared scripts, loaded by every context: content scripts list them in `manifest.json` before the scripts that use them, and modules (background, popup, tests) load them with a bare `import "../shared/<file>.js"`. So each works both as a classic script and as a module: no `import`/`export`, its body wrapped in an IIFE that assigns one global, `globalThis.yourtube<Name>`, read by the scripts that use it.
 
-Settings flow through `browser.storage.sync`: the `SETTINGS` table in `src/shared/settings.js` gives each setting's default, off value, and CSS attribute the popup writes, content scripts react via `browser.storage.onChanged`.
+Settings flow through `browser.storage.sync`: the `SETTINGS` table in `src/shared/settings.js` gives each setting's default, off value, and CSS attribute; the popup writes them and content scripts react via `browser.storage.onChanged`.
 
 ## YouTube gotchas
 
