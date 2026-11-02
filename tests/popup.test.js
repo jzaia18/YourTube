@@ -16,6 +16,14 @@ test("every popup checkbox names a boolean setting", () => {
   }
 });
 
+// The reverse: a boolean setting with no checkbox would be out of the user's reach.
+test("every boolean setting has a popup checkbox", () => {
+  const names = new Set([...html.matchAll(/data-setting="([^"]*)"/g)].map((match) => match[1]));
+  for (const [key, value] of Object.entries(DEFAULT_SETTINGS)) {
+    if (typeof value === "boolean") assert.ok(names.has(key), `popup.html should have a checkbox with data-setting="${key}"`);
+  }
+});
+
 // Each setting explains itself in a tooltip (the title of the label wrapping its checkbox).
 test("every popup checkbox has a tooltip", () => {
   const labels = [...html.matchAll(/<label\b([^>]*)>\s*<input\b[^>]*data-setting="([^"]*)"/g)];
