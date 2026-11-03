@@ -35,6 +35,9 @@
 
 ### Internal changes ⚙️
 
+- Unit tests check that every content CSS rule can be switched off by its setting, that the manifest lists every content CSS file, and that every setting has a popup checkbox and an off value.
+  [(#20)](https://github.com/jzaia18/YourTube/pull/20)
+
 - Every setting is described once, with its default and its off value, and CSS-only features need no script of their own.
   Content scripts now load the shared settings and logo destinations directly instead of keeping copies.
   [(#19)](https://github.com/jzaia18/YourTube/pull/19)

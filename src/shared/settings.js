@@ -1,5 +1,5 @@
 // Every setting, described once, for every context: a shared script (see AGENTS.md), defining
-// globalThis.yourtubeSettings = { SETTINGS, DEFAULT_SETTINGS }.
+// globalThis.yourtubeSettings = { SETTINGS, DEFAULT_SETTINGS, cssAttribute }.
 //
 // Each entry:
 // - default: the value a new install starts with.
@@ -28,5 +28,8 @@
   // Each setting's default, by key: what browser.storage.sync.get() takes to fill in missing keys.
   const DEFAULT_SETTINGS = Object.fromEntries(Object.entries(SETTINGS).map(([key, setting]) => [key, setting.default]));
 
-  globalThis.yourtubeSettings = { SETTINGS, DEFAULT_SETTINGS };
+  // The attribute a CSS-only feature's CSS is scoped under: hidePageAds -> data-yourtube-hide-page-ads.
+  const cssAttribute = (key) => "data-yourtube-" + key.replace(/[A-Z]/g, (letter) => "-" + letter.toLowerCase());
+
+  globalThis.yourtubeSettings = { SETTINGS, DEFAULT_SETTINGS, cssAttribute };
 })();

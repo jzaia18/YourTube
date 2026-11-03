@@ -4,16 +4,14 @@
 // scoped under, and hands the settings to every feature with JS of its own (FEATURES, each
 // defined by a script listed before this one in manifest.json, with an idempotent apply(settings)).
 (() => {
-  const { SETTINGS, DEFAULT_SETTINGS } = yourtubeSettings; // src/shared/settings.js, listed before this script
+  const { SETTINGS, DEFAULT_SETTINGS, cssAttribute } = yourtubeSettings; // src/shared/settings.js, listed before this script
   const FEATURES = [logoLink];
 
   const entries = Object.entries(SETTINGS);
   // What features see while the Master switch is off: every setting at its off value, plain YouTube.
   const OFF = { ...Object.fromEntries(entries.map(([key, setting]) => [key, setting.off])), enabled: false };
-  // Each CSS-only feature's setting and its attribute: hidePageAds -> data-yourtube-hide-page-ads.
-  const ATTRIBUTES = entries
-    .filter(([, setting]) => setting.css === "attribute")
-    .map(([key]) => [key, "data-yourtube-" + key.replace(/[A-Z]/g, (letter) => "-" + letter.toLowerCase())]);
+  // Each CSS-only feature's setting and the attribute its CSS is scoped under.
+  const ATTRIBUTES = entries.filter(([, setting]) => setting.css === "attribute").map(([key]) => [key, cssAttribute(key)]);
 
   let stored = { ...DEFAULT_SETTINGS };
   function applyAll() {
