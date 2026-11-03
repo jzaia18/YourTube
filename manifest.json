@@ -1,9 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "YourTube",
+  "name": "YourTube – A rewritten UI for YouTube",
+  "short_name": "YourTube",
   "version": "0.1.0",
   "version_name": "0.1.0",
-  "description": "Rewrites the YouTube UI.",
+  "description": "Hide Shorts, ads around videos, and other clutter, and choose where the YouTube logo leads. Every change can be switched off.",
+  "homepage_url": "https://github.com/jzaia18/YourTube",
   "icons": {
     "16": "icons/icon-16.png",
     "32": "icons/icon-32.png",
@@ -54,6 +56,9 @@
       "data_collection_permissions": {
         "required": ["none"]
       }
+    },
+    "gecko_android": {
+      "strict_min_version": "147.0"
     }
   }
 }

@@ -4,6 +4,9 @@ The first release.
 
 ### New features
 
+- YourTube works in Firefox for Android, on YouTube's mobile site.
+  [(#21)](https://github.com/jzaia18/YourTube/pull/21)
+
 - The button for joining a channel's paid membership can be hidden from below its videos.
   The popup groups this with hiding the "Ask" button, under "Below videos".
   [(#16)](https://github.com/jzaia18/YourTube/pull/16)
@@ -45,6 +48,9 @@ The first release.
   [(#7)](https://github.com/jzaia18/YourTube/pull/7)
 
 ### Documentation 📝
+
+- Added a privacy policy, and the extension's store name and description.
+  [(#21)](https://github.com/jzaia18/YourTube/pull/21)
 
 - Added this changelog, pull request and issue templates, and a contributing guide.
   [(#3)](https://github.com/jzaia18/YourTube/pull/3)

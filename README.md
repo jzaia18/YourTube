@@ -1,7 +1,7 @@
 # YourTube
 Put YouTube back in *Your* hands
 
-A browser extension for Chrome and Firefox that rewrites the YouTube UI.
+A browser extension for Chrome and Firefox: hide Shorts, ads around videos, and other clutter, and choose where the YouTube logo leads. Every change can be switched off.
 
 ## Principles
 
@@ -9,7 +9,7 @@ A browser extension for Chrome and Firefox that rewrites the YouTube UI.
 - **Still YouTube.** Changes are subtle and match YouTube's own look.
 - **Signed in or not.** Everything works whether or not you're logged in.
 - **Looks only.** YourTube changes what you see on your screen. It never sends anything to YouTube on its own; at most, a link leads somewhere new when you click it.
-- **Chrome and Firefox.** Works in both browsers.
+- **Chrome and Firefox.** Works in both browsers, including Firefox for Android.
 - **Everywhere on YouTube.** Works on YouTube's desktop and mobile sites, and in embedded videos.
 
 ## Features
@@ -23,6 +23,11 @@ Configure everything from the YourTube button in the browser toolbar.
 - **Hide channel stores below videos:** remove the shelf of products a channel sells from below its videos.
 - **Hide Shorts:** on the homepage, in Subscriptions, and/or in search results, each separately configurable -- it's your choice.
 - **Tidy the sidebar (Guide):** hide its Explore and More from YouTube sections, separately.
+
+## Privacy
+
+YourTube collects no data and sends nothing anywhere; your settings stay in your browser. See the
+[privacy policy](PRIVACY.md).
 
 ## Install (development)
 
@@ -43,6 +48,9 @@ Either run `npx web-ext run` from the repository root (requires Node.js; opens a
 2. Click **Load Temporary Add-on…** and select `manifest.json` in this repository.
 
 Temporary add-ons are removed when Firefox restarts.
+
+For Firefox for Android, run `npx web-ext run -t firefox-android --android-device <device id>`
+with the phone connected over USB debugging (see [Mozilla's guide](https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/)).
 
 ### Tests
 
