@@ -35,7 +35,7 @@
 
 ### Internal changes ⚙️
 
-- Pull request descriptions follow the pull request template, including those opened from the command line.
+- Pull request descriptions follow the pull request template, including those opened from the command line, and list only lasting costs as drawbacks.
   [(#26)](https://github.com/jzaia18/YourTube/pull/26)
 
 - Unit tests check that every content CSS rule can be switched off by its setting, that the manifest lists every content CSS file, and that every setting has a popup checkbox and an off value.
