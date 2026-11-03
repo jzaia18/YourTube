@@ -45,6 +45,7 @@ Settings flow through `browser.storage.sync`: the `SETTINGS` table in `src/share
 - Deliver changes as pull requests from a branch off `main`; the owner reviews and merges. Keep each PR small and focused: one feature or fix, small enough to review in one sitting. Split unrelated changes into separate PRs.
 - Every PR body is `.github/PULL_REQUEST_TEMPLATE.md`, filled in (`gh pr create --body` skips the template, so start from a copy of the file). Tick each checklist item that holds; an item that cannot apply to the change holds, with a note saying why. Once every item is ticked, delete everything above the dashed line; until then keep the checklist, with a note on each unticked item saying what is left. Fill in every heading below the line.
 - Every PR adds an entry to `.github/CHANGELOG.md` linking back to it and bumps the dev version in `manifest.json` (scheme in `.github/CONTRIBUTING.md`); CI checks both.
+- Releasing, from the release PR through the next development version's PR and the store submissions, follows `.github/RELEASE_GUIDANCE.md` step by step.
 - Log with a `[YourTube]` prefix.
 - Request the narrowest `permissions` / `host_permissions` that work; every addition triggers a new permission warning for users.
 

@@ -60,6 +60,9 @@
 
 ### Documentation 📝
 
+- Added a step-by-step release guide: the release pull request, testing, packaging, and publishing to both stores.
+  [(#25)](https://github.com/jzaia18/YourTube/pull/25)
+
 - Added a privacy policy: YourTube collects and sends nothing, and settings sync only through the browser's own sync.
   [(#23)](https://github.com/jzaia18/YourTube/pull/23)
 

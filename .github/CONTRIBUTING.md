@@ -32,4 +32,5 @@ Browsers only accept 1–4 dot-separated numbers in `version`. A development bui
 | Release 0.2.0                 | `0.2.0`   | `0.2.0`        |
 
 Each pull request takes `main`'s dev counter plus one; after a release, the next pull request
-starts `-dev1` of the following minor release. Only releases are published to browser stores.
+starts `-dev1` of the following minor release. Only releases are published to browser stores;
+[`RELEASE_GUIDANCE.md`](RELEASE_GUIDANCE.md) gives the steps.
