@@ -29,7 +29,7 @@
 
 ### Improvements 🛠
 
-- The browser's extensions page and the stores show a full name, "YourTube – A rewritten UI for YouTube", and a description of what it does.
+- The browser's extensions page and the stores show a full name, "YourTube – Your rewritten UI for YouTube", and a description of what it does.
   Space-limited places still say "YourTube".
   [(#22)](https://github.com/jzaia18/YourTube/pull/22)
 
@@ -53,6 +53,9 @@
   [(#7)](https://github.com/jzaia18/YourTube/pull/7)
 
 ### Documentation 📝
+
+- Added a privacy policy: YourTube collects and sends nothing, and settings sync only through the browser's own sync.
+  [(#23)](https://github.com/jzaia18/YourTube/pull/23)
 
 - Added this changelog, pull request and issue templates, and a contributing guide.
   [(#3)](https://github.com/jzaia18/YourTube/pull/3)

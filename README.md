@@ -1,5 +1,5 @@
 # YourTube
-Put YouTube back in *Your* hands
+Your rewritten UI for YouTube. Put YouTube back in *Your* hands.
 
 A browser extension for Chrome and Firefox: hide Shorts, ads around videos, and other clutter, and choose where the YouTube logo leads. Every change can be switched off.
 
@@ -23,6 +23,11 @@ Configure everything from the YourTube button in the browser toolbar.
 - **Hide channel stores below videos:** remove the shelf of products a channel sells from below its videos.
 - **Hide Shorts:** on the homepage, in Subscriptions, and/or in search results, each separately configurable -- it's your choice.
 - **Tidy the sidebar (Guide):** hide its Explore and More from YouTube sections, separately.
+
+## Privacy
+
+YourTube collects no data and sends nothing anywhere; your settings stay in your browser. See the
+[privacy policy](PRIVACY.md).
 
 ## Install (development)
 
