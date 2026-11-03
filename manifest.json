@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "YourTube",
-  "version": "0.1.0.10",
-  "version_name": "0.1.0-dev10",
+  "version": "0.1.0.11",
+  "version_name": "0.1.0-dev11",
   "description": "Rewrites the YouTube UI.",
   "icons": {
     "16": "icons/icon-16.png",
@@ -54,6 +54,9 @@
       "data_collection_permissions": {
         "required": ["none"]
       }
+    },
+    "gecko_android": {
+      "strict_min_version": "147.0"
     }
   }
 }
