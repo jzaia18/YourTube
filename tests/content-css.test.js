@@ -17,12 +17,14 @@ const contentFiles = (extension) =>
 const cssFiles = contentFiles(".css");
 
 // The attributes features set on <html>: one per CSS-only setting, plus any a feature's own JS
-// sets (a quoted "data-yourtube-…" string in src/content/*.js, e.g. the logo link's).
+// sets (a quoted "data-yourtube-…" string in the code of src/content/*.js, e.g. the logo link's).
+// Comments are stripped first, so an attribute that's only mentioned doesn't count as set.
 const settingAttributes = Object.entries(SETTINGS)
   .filter(([, setting]) => setting.css === "attribute")
   .map(([key]) => cssAttribute(key));
+const withoutComments = (js) => js.replace(/\/\*[\s\S]*?\*\/|(?<=^|\s)\/\/.*/gm, "");
 const scriptAttributes = contentFiles(".js").flatMap((file) =>
-  [...read(file).matchAll(/["'](data-yourtube-[a-z-]+)["']/g)].map((match) => match[1]),
+  [...withoutComments(read(file)).matchAll(/["'](data-yourtube-[a-z0-9-]+)["']/g)].map((match) => match[1]),
 );
 const featureAttributes = new Set([...settingAttributes, ...scriptAttributes]);
 
@@ -44,18 +46,16 @@ function splitTopLevel(list) {
   return [...parts, current];
 }
 
-// Every selector of every rule in a stylesheet, comments stripped and whitespace collapsed.
-function selectorsOf(file) {
+// What comes before the block of every top-level rule in a stylesheet (a selector list, or an
+// at-rule such as "@media …"), comments stripped and whitespace collapsed.
+function preludesOf(file) {
   const css = read(file).replace(/\/\*[\s\S]*?\*\//g, "");
-  const selectors = [];
+  const preludes = [];
   let depth = 0;
   let prelude = "";
   for (const char of css) {
     if (char === "{") {
-      if (depth === 0) {
-        assert.ok(!prelude.trim().startsWith("@"), `${file}: at-rules aren't checked yet; extend tests/content-css.test.js`);
-        selectors.push(...splitTopLevel(prelude).map((selector) => selector.trim().replace(/\s+/g, " ")));
-      }
+      if (depth === 0) preludes.push(prelude.trim().replace(/\s+/g, " "));
       depth++;
       prelude = "";
     } else if (char === "}") {
@@ -65,11 +65,29 @@ function selectorsOf(file) {
       prelude += char;
     }
   }
-  return selectors;
+  return preludes;
 }
 
-const SCOPE = /^html\[(data-yourtube-[a-z-]+)\]/;
-const scopes = cssFiles.flatMap((file) => selectorsOf(file).map((selector) => ({ file, selector, attribute: selector.match(SCOPE)?.[1] })));
+const preludes = cssFiles.flatMap((file) => preludesOf(file).map((prelude) => ({ file, prelude })));
+const isAtRule = ({ prelude }) => prelude.startsWith("@");
+
+const SCOPE = /^html\[(data-yourtube-[a-z0-9-]+)\]/;
+const scopes = preludes
+  .filter((rule) => !isAtRule(rule))
+  .flatMap(({ file, prelude }) =>
+    splitTopLevel(prelude).map((part) => {
+      const selector = part.trim();
+      return { file, selector, attribute: selector.match(SCOPE)?.[1] };
+    }),
+  );
+
+// The checks below read only top-level rules' selectors, so an unscoped rule inside an at-rule
+// would slip past them.
+test("content CSS has no at-rules, which these checks don't look inside", () => {
+  for (const { file, prelude } of preludes.filter(isAtRule)) {
+    assert.fail(`${file}: "${prelude}" isn't checked; extend tests/content-css.test.js to look inside at-rules`);
+  }
+});
 
 test("every content CSS selector is scoped under an attribute a feature sets", () => {
   assert.ok(scopes.length > 0, "src/content/ should have CSS rules");
