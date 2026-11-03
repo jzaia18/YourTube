@@ -50,6 +50,9 @@
 
 ### Documentation 📝
 
+- Added a step-by-step release guide: the release pull request, testing, packaging, and publishing to both stores.
+  [(#25)](https://github.com/jzaia18/YourTube/pull/25)
+
 - Added this changelog, pull request and issue templates, and a contributing guide.
   [(#3)](https://github.com/jzaia18/YourTube/pull/3)
 
