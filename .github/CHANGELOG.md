@@ -1,3 +1,28 @@
+# Release 0.2.0-dev (development release)
+
+### New features since last release
+
+### Improvements 🛠
+
+### Breaking changes 💔
+
+### Deprecations 👋
+
+### Internal changes ⚙️
+
+- Development of 0.2.0 begins.
+  [(#28)](https://github.com/jzaia18/YourTube/pull/28)
+
+### Documentation 📝
+
+### Bug fixes 🐛
+
+### Contributors ✍️
+
+This release contains contributions from (in alphabetical order):
+
+Claude
+
 # Release 0.1.0
 
 The first release.
