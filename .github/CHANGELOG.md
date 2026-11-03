@@ -1,6 +1,8 @@
-# Release 0.1.0-dev (development release)
+# Release 0.1.0
 
-### New features since last release
+The first release.
+
+### New features
 
 - The button for joining a channel's paid membership can be hidden from below its videos.
   The popup groups this with hiding the "Ask" button, under "Below videos".
@@ -26,12 +28,6 @@
 - The sidebar (Guide) can hide its Explore and More from YouTube sections, separately.
 
 - Every setting has a tooltip explaining what it changes.
-
-### Improvements 🛠
-
-### Breaking changes 💔
-
-### Deprecations 👋
 
 ### Internal changes ⚙️
 
