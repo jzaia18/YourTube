@@ -29,6 +29,10 @@
 
 ### Improvements 🛠
 
+- The browser's extensions page and the stores show a full name, "YourTube – A rewritten UI for YouTube", and a description of what it does.
+  Space-limited places still say "YourTube".
+  [(#22)](https://github.com/jzaia18/YourTube/pull/22)
+
 ### Breaking changes 💔
 
 ### Deprecations 👋

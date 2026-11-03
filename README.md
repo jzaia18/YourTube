@@ -1,7 +1,7 @@
 # YourTube
 Put YouTube back in *Your* hands
 
-A browser extension for Chrome and Firefox that rewrites the YouTube UI.
+A browser extension for Chrome and Firefox: hide Shorts, ads around videos, and other clutter, and choose where the YouTube logo leads. Every change can be switched off.
 
 ## Principles
 
