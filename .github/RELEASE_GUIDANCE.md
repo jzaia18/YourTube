@@ -43,7 +43,52 @@ every setting turns its change on and off live, and that the Master switch turns
 4. Tag the merge commit `vX.Y.Z` and push the tag (`git push origin vX.Y.Z`). Create a GitHub
    release from the tag, attach the zip, and paste the release's changelog section as its notes.
 
-## 4. Chrome Web Store
+## 4. Open the next development version
+
+As soon as the release is merged, open a pull request that starts the next release's dev builds.
+Later pull requests then have a version to count from and a changelog section for their entries.
+This step does not wait for the stores.
+
+1. Branch `dev-X.(Y+1).0` off `main`.
+2. In `manifest.json`, set `version` to `X.(Y+1).0.1` and `version_name` to `X.(Y+1).0-dev1` (see
+   [Versioning](CONTRIBUTING.md#versioning)).
+3. At the top of [`CHANGELOG.md`](CHANGELOG.md), above `# Release X.Y.Z`, add a new development
+   section with every category heading, filling in the next version, the pull request number `N`,
+   and your name:
+
+   ```markdown
+   # Release X.(Y+1).0-dev (development release)
+
+   ### New features since last release
+
+   ### Improvements 🛠
+
+   ### Breaking changes 💔
+
+   ### Deprecations 👋
+
+   ### Internal changes ⚙️
+
+   - Development of X.(Y+1).0 begins.
+     [(#N)](https://github.com/jzaia18/YourTube/pull/N)
+
+   ### Documentation 📝
+
+   ### Bug fixes 🐛
+
+   ### Contributors ✍️
+
+   This release contains contributions from (in alphabetical order):
+
+   Your Name
+   ```
+
+   The entry under Internal changes is there for the changelog check, which needs every pull
+   request to add an entry linking back to it.
+4. Open the pull request. The version check should report "On the expected dev version,
+   X.(Y+1).0-dev1."
+
+## 5. Chrome Web Store
 
 Dashboard: <https://chrome.google.com/webstore/devconsole>
 
@@ -62,7 +107,7 @@ Dashboard: <https://chrome.google.com/webstore/devconsole>
 6. Click **Submit for review**. A review usually takes a few days, and can take longer for a new
    developer account or when permissions change.
 
-## 5. Firefox Add-ons (AMO)
+## 6. Firefox Add-ons (AMO)
 
 Developer hub: <https://addons.mozilla.org/developers/>
 
@@ -82,14 +127,10 @@ Developer hub: <https://addons.mozilla.org/developers/>
 After the first signed release, the add-on ID in `browser_specific_settings.gecko.id` is
 permanent. Never change it.
 
-## 6. After the stores accept it
+## 7. After the stores accept it
 
-1. **(first release only)** Add install links for both stores to the README, above the
-   development install steps.
-2. The next pull request starts the following release's dev builds (see
-   [Versioning](CONTRIBUTING.md#versioning)). It also adds a new development heading at the top of
-   [`CHANGELOG.md`](CHANGELOG.md), `# Release X.(Y+1).0-dev (development release)`, with the
-   category headings the previous release used, including the empty ones deleted at release.
+**(first release only)** Add install links for both stores to the README, above the development
+install steps.
 
 ## Listing text
 
