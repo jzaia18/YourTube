@@ -22,7 +22,7 @@ jobs:
         run: |
           # A release (version_name without -dev) renames the changelog's sections instead.
           if [[ "$(jq -r '.version_name // ""' manifest.json)" != *-dev* ]]; then
-            echo "[YourTube] Release: no entry needed."
+            echo "[YouRTube] Release: no entry needed."
             exit 0
           fi
           if ! grep -qF "$LINK" .github/CHANGELOG.md; then

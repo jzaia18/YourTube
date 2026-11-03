@@ -2,24 +2,24 @@
 
 Last updated: November 2, 2026
 
-YourTube collects no data about you. It has no analytics or tracking, and it sends nothing anywhere.
+YouRTube collects no data about you. It has no analytics or tracking, and it sends nothing anywhere.
 
-## What YourTube stores
+## What YouRTube stores
 
-YourTube saves your settings (which changes are on, and where the YouTube logo leads) in your
+YouRTube saves your settings (which changes are on, and where the YouTube logo leads) in your
 browser's extension storage. If you have turned on sync in your browser, your browser syncs these
 settings between your devices through Google (Chrome) or Mozilla (Firefox), under their privacy
-policies. YourTube's developers never receive them.
+policies. YouRTube's developers never receive them.
 
-## What YourTube reads
+## What YouRTube reads
 
-YourTube runs only on YouTube's sites (www.youtube.com and m.youtube.com). It reads those pages on
+YouRTube runs only on YouTube's sites (www.youtube.com and m.youtube.com). It reads those pages on
 your device only to change how they look, mostly by hiding parts of them. It does not save,
 collect, or send anything it reads.
 
 ## Network requests
 
-YourTube makes no network requests of its own and runs no remote code. Every request YouTube
+YouRTube makes no network requests of its own and runs no remote code. Every request YouTube
 receives comes from your own browsing.
 
 ## Permissions

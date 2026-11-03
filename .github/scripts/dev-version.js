@@ -54,15 +54,15 @@ function main([mainPath, prPath]) {
   const mainManifest = JSON.parse(readFileSync(mainPath, "utf8"));
   const prManifest = JSON.parse(readFileSync(prPath, "utf8"));
   const label = (m) => m.version_name ?? m.version;
-  console.log(`[YourTube] main: ${label(mainManifest)}, pull request: ${label(prManifest)}`);
+  console.log(`[YouRTube] main: ${label(mainManifest)}, pull request: ${label(prManifest)}`);
 
   if (isRelease(mainManifest, prManifest)) {
-    console.log(`[YourTube] Release ${prManifest.version}.`);
+    console.log(`[YouRTube] Release ${prManifest.version}.`);
     return;
   }
   const next = nextDevVersion(mainManifest);
   if (prManifest.version === next.version && prManifest.version_name === next.version_name) {
-    console.log(`[YourTube] On the expected dev version, ${next.version_name}.`);
+    console.log(`[YouRTube] On the expected dev version, ${next.version_name}.`);
     return;
   }
   console.log(

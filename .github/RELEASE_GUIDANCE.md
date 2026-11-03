@@ -1,4 +1,4 @@
-# Releasing YourTube
+# Releasing YouRTube
 
 How to publish a release to the Chrome Web Store and Firefox Add-ons (AMO). Version numbers are
 explained under [Versioning](CONTRIBUTING.md#versioning). Only releases go to the stores.
@@ -14,7 +14,7 @@ version to the existing listings instead.
    `# Release X.Y.Z`, add a one-line summary below it, and delete any empty sections.
 4. If the features changed, update the `description` in `manifest.json` (Chrome allows at most 132
    characters) and the README's opening paragraph to match.
-5. If anything YourTube stores, reads, or sends has changed, update [`PRIVACY.md`](../PRIVACY.md)
+5. If anything YouRTube stores, reads, or sends has changed, update [`PRIVACY.md`](../PRIVACY.md)
    and its "Last updated" date.
 6. Open the pull request. The version check should report "Release X.Y.Z.", and the changelog
    check skips releases.
@@ -114,7 +114,7 @@ Developer hub: <https://addons.mozilla.org/developers/>
 1. **(first release only)** Sign in with a Mozilla account and accept the developer agreement.
 2. **(first release only)** Click **Submit a New Add-on**, choose **On this site** (listed), and
    upload the zip. In later releases, open the add-on and click **Upload New Version**.
-3. When asked whether the add-on needs source code to review, answer **No**: YourTube has no build
+3. When asked whether the add-on needs source code to review, answer **No**: YouRTube has no build
    step, so the zip is the source.
 4. **Listing.** Fill in or check the summary (at most 250 characters), the description, the
    categories, the support site (<https://github.com/jzaia18/YourTube/issues>), and the license
@@ -136,7 +136,7 @@ install steps.
 
 - **Summary / short description:** the `description` in `manifest.json`.
 - **Detailed description:** the README's opening paragraph and its Features list, followed by
-  "YourTube works logged in or out, on YouTube's desktop and mobile sites. It collects no data and
+  "YouRTube works logged in or out, on YouTube's desktop and mobile sites. It collects no data and
   makes no requests of its own." and the link <https://github.com/jzaia18/YourTube>.
 - **Single purpose (Chrome):** "Customizes how YouTube's pages look, with a setting for each
   change."
