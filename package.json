@@ -5,6 +5,7 @@
     "test": "node --test"
   },
   "webExt": {
+    "build": { "filename": "yourtube-{version}.zip" },
     "ignoreFiles": ["tests", "docs", "package.json", "AGENTS.md", "CLAUDE.md", "GLOSSARY.md"]
   }
 }
