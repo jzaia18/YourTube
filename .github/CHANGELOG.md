@@ -49,7 +49,7 @@ The first release.
 
 ### Documentation 📝
 
-- Added a privacy policy, and the extension's store name and description.
+- Added a privacy policy, the extension's store name and description, and a step-by-step release guide.
   [(#21)](https://github.com/jzaia18/YourTube/pull/21)
 
 - Added this changelog, pull request and issue templates, and a contributing guide.
