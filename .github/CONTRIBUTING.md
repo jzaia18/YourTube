@@ -1,8 +1,8 @@
-# Contributing to YourTube
+# Contributing to YouRTube
 
-Thank you for taking the time to contribute to YourTube!
+Thank you for taking the time to contribute to YouRTube!
 
-Every change upholds YourTube's [principles](../README.md#principles). `AGENTS.md` holds the full
+Every change upholds YouRTube's [principles](../README.md#principles). `AGENTS.md` holds the full
 development guide: where code lives, YouTube's quirks, and how to test.
 
 ## Pull requests

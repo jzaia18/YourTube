@@ -1,4 +1,4 @@
-# YourTube
+# YouRTube
 
 Browser extension (Manifest V3, Chrome and Firefox) that rewrites the YouTube UI on www.youtube.com, m.youtube.com, and www.youtube-nocookie.com. Plain JS/CSS loaded directly by the browser: no build step, no bundler, no dependencies. Keep it that way unless the owner asks otherwise.
 
@@ -7,7 +7,7 @@ Browser extension (Manifest V3, Chrome and Firefox) that rewrites the YouTube UI
 Every change upholds all of these; a feature request that conflicts with one goes back to the owner before any code is written. `README.md` carries a short user-facing summary of these principles; update it whenever this list changes.
 
 1. **Every behaviour is configurable.** Each feature ships with its own setting to disable it, added in the same change as the feature. Settings are clear and intuitive: labelled by the visible effect on YouTube in plain language, not by implementation names. The default (on or off) varies per feature: ask the owner when creating each one. Toggling a setting takes effect immediately in every open YouTube tab, with no reload.
-2. **Unimposing.** Changes to the page are minimal and blend into YouTube's design; at a glance the altered page is still obviously YouTube. Build added UI from YouTube's own look: its `--yt-spec-*` CSS variables (which also track light/dark theme), fonts, spacing, and existing element patterns, rather than a separate YourTube style.
+2. **Unimposing.** Changes to the page are minimal and blend into YouTube's design; at a glance the altered page is still obviously YouTube. Build added UI from YouTube's own look: its `--yt-spec-*` CSS variables (which also track light/dark theme), fonts, spacing, and existing element patterns, rather than a separate YouRTube style.
 3. **Works logged in and logged out.** Every feature works for both. YouTube serves different markup and content to each (e.g. sign-in prompts, no subscriptions or history, a sparse home feed when logged out), so verify features in both states.
 4. **Aesthetic only.** The extension changes how the page renders on the user's screen; it never sends, alters, or blocks requests on its own. Every request YouTube receives comes from the user's own deliberate navigation, to a page they could visit anyway (a restyled link may lead somewhere new). Leave YouTube's own JS, network traffic, and user actions untouched: no intercepting or modifying requests, no requests made on the user's behalf, no synthetic clicks or other interactions with YouTube controls. Prefer hiding elements with CSS over removing them from the DOM, so YouTube's scripts keep seeing the page they built.
 5. **Chrome and Firefox.** Every feature works in both browsers, Firefox for Android included (it shows m.youtube.com), from one codebase. Use only WebExtension APIs and manifest keys both support and verify features in both. Call extension APIs through the promise-based `browser.*` namespace, native to Firefox and available in Chrome 148+.
@@ -46,7 +46,7 @@ Settings flow through `browser.storage.sync`: the `SETTINGS` table in `src/share
 - Every PR body is `.github/PULL_REQUEST_TEMPLATE.md`, filled in (`gh pr create --body` skips the template, so start from a copy of the file). Tick each checklist item that holds; an item that cannot apply to the change holds, with a note saying why. Once every item is ticked, delete everything above the dashed line; until then keep the checklist, with a note on each unticked item saying what is left. Fill in every heading below the line.
 - Every PR adds an entry to `.github/CHANGELOG.md` linking back to it and bumps the dev version in `manifest.json` (scheme in `.github/CONTRIBUTING.md`); CI checks both.
 - Releasing, from the release PR through the next development version's PR and the store submissions, follows `.github/RELEASE_GUIDANCE.md` step by step.
-- Log with a `[YourTube]` prefix.
+- Log with a `[YouRTube]` prefix.
 - Request the narrowest `permissions` / `host_permissions` that work; every addition triggers a new permission warning for users.
 
 ## Testing

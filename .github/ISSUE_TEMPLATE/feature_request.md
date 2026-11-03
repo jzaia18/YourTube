@@ -4,7 +4,7 @@ about: Suggest a change to how YouTube looks
 labels: enhancement, needs-triage
 ---
 
-Before posting, check that the idea fits YourTube's [principles](https://github.com/jzaia18/YourTube#principles).
+Before posting, check that the idea fits YouRTube's [principles](https://github.com/jzaia18/YourTube#principles).
 
 #### What should change
 

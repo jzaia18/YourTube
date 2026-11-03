@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Something YourTube changes looks or behaves wrong
+about: Something YouRTube changes looks or behaves wrong
 labels: bug, needs-triage
 ---
 
@@ -14,7 +14,7 @@ labels: bug, needs-triage
 
 #### Where it happens
 
-* *YourTube version:* (shown on your browser's extensions page)
+* *YouRTube version:* (shown on your browser's extensions page)
 
 * *Browser and version:* (Chrome: ⋮ menu → Help → About Google Chrome. Firefox: ☰ menu → Help →
   About Firefox.)
@@ -25,5 +25,5 @@ labels: bug, needs-triage
 
 #### Additional information
 
-Screenshots, browser console messages starting with `[YourTube]`, the settings you have on, or
+Screenshots, browser console messages starting with `[YouRTube]`, the settings you have on, or
 anything else that helps reproduce the issue.

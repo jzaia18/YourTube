@@ -4,6 +4,10 @@
 
 ### Improvements 🛠
 
+- The extension is now called "YouRTube: YouTube, rewritten", short enough for the stores' 30-character limit.
+  Everywhere it appears, the name is spelled "YouRTube", with a capital R.
+  [(#29)](https://github.com/jzaia18/YourTube/pull/29)
+
 ### Breaking changes 💔
 
 ### Deprecations 👋
