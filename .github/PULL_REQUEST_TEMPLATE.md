@@ -32,4 +32,8 @@ request template.
 
 **Possible Drawbacks:**
 
+<!-- The lasting technical or practical costs of this change once it is merged. Work that gets
+done before merging (a version bump, a pending test, a decision for the owner) goes under
+Context or in the checklist. -->
+
 **Related GitHub Issues:**
