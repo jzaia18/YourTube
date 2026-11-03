@@ -50,6 +50,9 @@
 
 ### Documentation 📝
 
+- Added a privacy policy: YourTube collects and sends nothing, and settings sync only through the browser's own sync.
+  [(#23)](https://github.com/jzaia18/YourTube/pull/23)
+
 - Added this changelog, pull request and issue templates, and a contributing guide.
   [(#3)](https://github.com/jzaia18/YourTube/pull/3)
 
