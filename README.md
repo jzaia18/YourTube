@@ -24,6 +24,11 @@ Configure everything from the YourTube button in the browser toolbar.
 - **Hide Shorts:** on the homepage, in Subscriptions, and/or in search results, each separately configurable -- it's your choice.
 - **Tidy the sidebar (Guide):** hide its Explore and More from YouTube sections, separately.
 
+## Privacy
+
+YourTube collects no data and sends nothing anywhere; your settings stay in your browser. See the
+[privacy policy](PRIVACY.md).
+
 ## Install (development)
 
 Requires Chrome 152+ or Firefox 147+.
