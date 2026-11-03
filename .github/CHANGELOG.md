@@ -1,4 +1,6 @@
-# Release 0.1.0-dev (development release)
+# Release 0.1.0
+
+The first release.
 
 ### New features since last release
 
@@ -35,10 +37,6 @@
 - The browser's extensions page and the stores show a full name, "YourTube – Your rewritten UI for YouTube", and a description of what it does.
   Space-limited places still say "YourTube".
   [(#22)](https://github.com/jzaia18/YourTube/pull/22)
-
-### Breaking changes 💔
-
-### Deprecations 👋
 
 ### Internal changes ⚙️
 
