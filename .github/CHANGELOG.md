@@ -2,6 +2,9 @@
 
 ### New features since last release
 
+- YourTube can be installed in Firefox for Android, where it works on YouTube's mobile site.
+  [(#24)](https://github.com/jzaia18/YourTube/pull/24)
+
 - The button for joining a channel's paid membership can be hidden from below its videos.
   The popup groups this with hiding the "Ask" button, under "Below videos".
   [(#16)](https://github.com/jzaia18/YourTube/pull/16)
