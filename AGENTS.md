@@ -44,6 +44,7 @@ Settings flow through `browser.storage.sync`: the `SETTINGS` table in `src/share
 - `browser_specific_settings.gecko.id` is permanent once the extension is signed by Mozilla, and `storage.sync` depends on it; keep it unchanged.
 - Deliver changes as pull requests from a branch off `main`; the owner reviews and merges. Keep each PR small and focused: one feature or fix, small enough to review in one sitting. Split unrelated changes into separate PRs.
 - Every PR adds an entry to `.github/CHANGELOG.md` linking back to it and bumps the dev version in `manifest.json` (scheme in `.github/CONTRIBUTING.md`); CI checks both.
+- Releasing, from the release PR to the store submissions and the first PR after them, follows `.github/RELEASE_GUIDANCE.md` step by step.
 - Log with a `[YourTube]` prefix.
 - Request the narrowest `permissions` / `host_permissions` that work; every addition triggers a new permission warning for users.
 
