@@ -15,6 +15,9 @@
 
 ### Documentation 📝
 
+- The release guide covers only what every release repeats, now that the store listings exist, and gives full Chrome permission justifications.
+  [(#30)](https://github.com/jzaia18/YourTube/pull/30)
+
 ### Bug fixes 🐛
 
 ### Contributors ✍️
